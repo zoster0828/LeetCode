@@ -21,7 +21,6 @@ public class Solution {
             right++;
         }
 
-        // If all elements in the array are 1s, decrement the maxLength by 1
         if (maxLength == nums.length)
             maxLength--;
 
