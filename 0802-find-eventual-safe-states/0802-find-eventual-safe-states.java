@@ -12,7 +12,8 @@ class Solution {
             }
 
             for(int dest = 0 ; dest < graph[index].length ; dest ++) {
-                nodes[index].addDestination(graph[index][dest]);
+                if(!terminals.contains(graph[index][dest]))
+                    nodes[index].addDestination(graph[index][dest]);
 
                 if(nodes[graph[index][dest]] == null) {
                     nodes[graph[index][dest]] = new Node(graph[index][dest]);
@@ -21,7 +22,7 @@ class Solution {
             }
         }
 
-        List<Integer> result = new ArrayList();
+        Set<Integer> result = new HashSet();
         while(terminals.size() != 0) {
             Node terminal = nodes[terminals.poll()];
             result.add(terminal.getIndex());
@@ -34,8 +35,9 @@ class Solution {
             }
         }
 
-        Collections.sort(result);
-        return result;
+        List list = new ArrayList(result);
+        Collections.sort(list);
+        return list;
     }
 
     public class Node {
