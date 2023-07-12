@@ -1,42 +1,65 @@
 class Solution {
     public List<Integer> eventualSafeNodes(int[][] graph) {
-        int V = graph.length;
-
-        boolean[] visited = new boolean[V];
-        boolean[] pathVisited = new boolean[V];
-        boolean[] isSafe = new boolean[V];
-
-        List<Integer> safeNodes = new ArrayList<>();
-
-        for(int i=0;i<V;i++){
-            if(!visited[i]){
-                dfs(graph, i, visited, pathVisited, isSafe);
+        Node[] nodes = new Node[graph.length];
+        Queue<Node> terminals = new LinkedList<>();
+        for(int index = 0 ; index < graph.length ; index++) {
+            if(nodes[index] == null) {
+                nodes[index] = new Node(index);
+            }            
+            if(graph[index].length == 0) {
+                terminals.add(nodes[index]);
             }
-        }
-
-        for(int i=0;i<V;i++){
-            if(isSafe[i]) safeNodes.add(i);
-        }
-
-        return safeNodes;
-    }
-
-    public boolean dfs(int[][] adj, int node, boolean[] visited,
-    boolean[] pathVisited,boolean[] isSafe){
-        visited[node] = true;
-        pathVisited[node] = true;
-        
-        for(int it : adj[node]){
-            if(!visited[it]){
-                if(dfs(adj,it,visited,pathVisited,isSafe)){
-                    return true;
+            
+            for(int dest = 0 ; dest < graph[index].length ; dest ++) {
+                nodes[index].addDestination(graph[index][dest]);                
+                if(nodes[graph[index][dest]] == null) {
+                    nodes[graph[index][dest]] = new Node(graph[index][dest]);
                 }
-            }else if(pathVisited[it]){
-                return true;
+                nodes[graph[index][dest]].addFrom(index);
             }
         }
-        isSafe[node] = true;
-        pathVisited[node] = false;
-        return false;
+        
+        List<Integer> result = new ArrayList();
+        while(terminals.size() != 0) {
+            Node terminal = terminals.poll();
+            result.add(terminal.getIndex());
+            Set<Integer> from = terminal.getFrom();
+            for(Integer index : from) {
+                nodes[index].removeDest(terminal.getIndex());
+                if(nodes[index].isTerminal()) {
+                    terminals.add(nodes[index]);
+                }
+            }
+        }
+        
+        Collections.sort(result);
+        return result;
+    }
+    
+    public class Node {
+        private int index;
+        private Set<Integer> dest;
+        private Set<Integer> from;
+        public Node(int index) {
+            this.index = index;
+            this.dest = new HashSet();
+            this.from = new HashSet();
+        }
+        public void addDestination(int index) {
+            this.dest.add(index);
+        }
+        public void addFrom(int index) {
+            this.from.add(index);
+        }
+        public Set<Integer> getFrom() {
+            return this.from;
+        }
+        public int getIndex() {return this.index;}
+        public boolean isTerminal() {
+            return this.dest.size() == 0;
+        }
+        public void removeDest(int index) {
+            this.dest.remove(index);
+        }
     }
 }
