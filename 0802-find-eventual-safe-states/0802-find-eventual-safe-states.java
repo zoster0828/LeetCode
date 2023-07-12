@@ -1,41 +1,43 @@
 class Solution {
     public List<Integer> eventualSafeNodes(int[][] graph) {
         Node[] nodes = new Node[graph.length];
-        Queue<Node> terminals = new LinkedList<>();
+        Queue<Integer> terminals = new LinkedList<>();
+
         for(int index = 0 ; index < graph.length ; index++) {
             if(nodes[index] == null) {
                 nodes[index] = new Node(index);
-            }            
-            if(graph[index].length == 0) {
-                terminals.add(nodes[index]);
             }
-            
+            if(graph[index].length == 0) {
+                terminals.add(index);
+            }
+
             for(int dest = 0 ; dest < graph[index].length ; dest ++) {
-                nodes[index].addDestination(graph[index][dest]);                
+                nodes[index].addDestination(graph[index][dest]);
+
                 if(nodes[graph[index][dest]] == null) {
                     nodes[graph[index][dest]] = new Node(graph[index][dest]);
                 }
                 nodes[graph[index][dest]].addFrom(index);
             }
         }
-        
+
         List<Integer> result = new ArrayList();
         while(terminals.size() != 0) {
-            Node terminal = terminals.poll();
+            Node terminal = nodes[terminals.poll()];
             result.add(terminal.getIndex());
             Set<Integer> from = terminal.getFrom();
             for(Integer index : from) {
                 nodes[index].removeDest(terminal.getIndex());
                 if(nodes[index].isTerminal()) {
-                    terminals.add(nodes[index]);
+                    terminals.add(index);
                 }
             }
         }
-        
+
         Collections.sort(result);
         return result;
     }
-    
+
     public class Node {
         private int index;
         private Set<Integer> dest;
