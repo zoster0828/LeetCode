@@ -1,15 +1,23 @@
 class Solution {
     public int longestSubsequence(int[] arr, int difference) {
-        Map<Integer, Integer> m = new HashMap<>();
-        int mx = 0;
+        int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
+
         for (int i = 0; i < arr.length; i++) {
-            int c = arr[i];
-            if (m.containsKey(c - difference))
-                m.put(c, m.get(c - difference) + 1);
-            else
-                m.put(c, 1);
-            mx = Math.max(mx, m.get(c));
+            if (arr[i] < min) min = arr[i];
+            if (arr[i] > max) max = arr[i];
         }
-        return mx;
+        int[] dp = new int[max - min + 1];
+        max = 1;
+
+        for (int i = 0; i < arr.length; i++) {
+            int cur = arr[i] - min, pred = cur - difference;
+            if (pred >= 0 && pred < dp.length) {
+                dp[cur] = 1 + dp[pred];
+                if (dp[cur] > max) max = dp[cur];
+            } else {
+                dp[cur] = 1;
+            }
+        }
+        return max;
     }
 }
