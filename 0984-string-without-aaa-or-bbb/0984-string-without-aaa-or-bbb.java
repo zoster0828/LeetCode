@@ -51,7 +51,7 @@ class Solution {
     }
     
     String one(int count, String start) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         String add = "";
         if(start == "a") {
             add = "ba";
@@ -59,9 +59,9 @@ class Solution {
             add = "ab";
         }
         for(int i = 0 ; i < count ; i++) {
-            result += add;
+            result.append(add);
         }
         
-        return result;
+        return result.toString();
     }
 }
