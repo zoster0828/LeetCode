@@ -1,48 +1,53 @@
 class Solution {
     public String strWithout3a3b(int a, int b) {
-            StringBuilder result = new StringBuilder();
-    char charA = 'a', charB = 'b';
-    int countA = 0, countB = 0;
-
-    if (b > a) {
-        int tempCount = a;
-        a = b;
-        b = tempCount;
-
-        char tempChar = charA;
-        charA = charB;
-        charB = tempChar;
-    }
-
-    while (a > 0 || b > 0) {
-        // Append 'a' if remaining 'a' count is greater than 'b' count and consecutive 'a's are less than 2
-        if (a > b && countA < 2) {
-            result.append(charA);
-            countA++;
-            countB = 0;
-            a--;
+        StringBuilder result = new StringBuilder();
+        String before = "";
+        int continuity = 0;
+        while(a != b) {
+            if(a > b) {
+                if(before == "a"){
+                    if(continuity != 2) {                    
+                        result.append("a");
+                        a--;
+                        continuity++;
+                    } else {
+                        result.append("b");
+                        b--;
+                        continuity = 0;
+                        before = "b";
+                    }
+                } else {
+                    result.append("a");
+                    before = "a";
+                    a--;
+                    continuity++;
+                }
+            } else {
+                if(before == "b"){
+                    if(continuity != 2) {                    
+                        result.append("b");
+                        b--;
+                        continuity++;
+                    } else {
+                        result.append("a");
+                        a--;
+                        continuity = 0;
+                        before = "a";
+                    }
+                } else {
+                    result.append("b");
+                    before = "b";
+                    b--;
+                    continuity++;
+                }
+            }
         }
-        // Append 'b' if remaining 'b' count is greater than 0 and consecutive 'b's are less than 2
-        else if (b > 0 && countB < 2) {
-            result.append(charB);
-            countB++;
-            countA = 0;
-            b--;
+        
+        if(a==b) {
+            result.append(one(a, before));
         }
-
-        // Swap characters if 'b' count is greater than 'a' count
-        if (b > a) {
-            int tempCount = a;
-            a = b;
-            b = tempCount;
-
-            char tempChar = charA;
-            charA = charB;
-            charB = tempChar;
-        }
-    }
-
-    return result.toString();
+        
+        return result.toString();
     }
     
     String one(int count, String start) {
