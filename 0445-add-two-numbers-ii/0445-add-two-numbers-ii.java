@@ -2,30 +2,17 @@
 
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        Stack<Integer> first = new Stack();
-        Stack<Integer> second = new Stack();
-        
-        while(l1!=null) {
-            first.add(l1.val);
-            l1 = l1.next;
-        }
-        
-        while(l2!=null) {
-            second.add(l2.val);
-            l2 = l2.next;
-        }
+        Stack<Integer> first = nodeToStack(l1);
+        Stack<Integer> second = nodeToStack(l2);
         
         int over = 0;        
         ListNode result = null;
         while(!first.isEmpty() || !second.isEmpty()) {
             int sum = 0;
-            if(!first.isEmpty()) {
-                sum += first.pop();
-            }
-            if(!second.isEmpty()) {
-                sum += second.pop();
-            }
+            sum += first.isEmpty() ? 0 : first.pop();
+            sum += second.isEmpty() ? 0 : second.pop();
             sum += over;
+            
             if(sum > 9) {
                 sum = sum % 10;
                 over = 1;
@@ -33,6 +20,7 @@ class Solution {
                 over = 0;
             }
             
+            //add prev node
             if(result == null) {
                 result = new ListNode(sum);
             } else {
@@ -47,5 +35,15 @@ class Solution {
         }
         
         return result;
-    }   
+    }
+    
+    Stack<Integer> nodeToStack(ListNode node) {
+        Stack<Integer> stack = new Stack();
+        while(node!=null) {
+            stack.add(node.val);
+            node = node.next;
+        }
+        
+        return stack;
+    }
 }
