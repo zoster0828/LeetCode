@@ -20,16 +20,16 @@ class Solution {
         queue.add(root);        
         return bfs(false, 1);
     }
-    public boolean bfs(boolean odd, int count) {
+    public boolean bfs(boolean even, int count) {
         int next = 0;
         List<Integer> now = new ArrayList();
         while(count > 0){
             count--;
             TreeNode node = queue.poll();
-            if(!odd) {
-                if(node.val % 2 != 1) return false;
-            } else {
+            if(even) {
                 if(node.val % 2 != 0) return false;
+            } else {
+                if(node.val % 2 != 1) return false;
             }
             now.add(node.val);
             if(node != null){
@@ -44,7 +44,7 @@ class Solution {
                 }
             }            
         }
-        if(odd) {            
+        if(even) {            
             int curr = Integer.MAX_VALUE;
             for(int i = 0 ; i < now.size() ; i++) {
                 if(curr > now.get(i)) {
@@ -66,7 +66,7 @@ class Solution {
         if(queue.isEmpty()) {
             return true;
         } else {
-            return bfs(!odd, next);
+            return bfs(!even, next);
         }
     }
 }
