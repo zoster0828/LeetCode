@@ -1,9 +1,17 @@
 class Solution {
     public int findKthLargest(int[] nums, int k) {
 
-        Arrays.sort(nums);
-        
-        return nums[nums.length-k];
+        int top[] = new int[k];
+        for(int i = 0 ; i < top.length ; i++) {
+            top[i] = nums[i];
+        }
+        Arrays.sort(top);
+
+        for(int i = top.length ; i < nums.length ; i++) {
+            replace(top, nums[i]);
+        }
+
+        return top[0];
     }
 
     public void replace(int[] top, int num) {
