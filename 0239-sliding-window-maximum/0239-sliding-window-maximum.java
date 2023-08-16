@@ -1,41 +1,29 @@
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
-        PriorityQueue<Value> queue = new PriorityQueue();
-        for (int i = 0; i < k; i++) {
-            queue.add(new Value(nums[i], i));
-        }
-
-        int[] result = new int[nums.length - k + 1];
-
-        for (int i = 0; i < nums.length - k + 1; i++) {
-            queue.add(new Value(nums[i+k-1], i+k-1));
-            Value value = null;
-            while(true) {
-                value = queue.poll();
-                if (value.position < i || value.position >= i + k) {
-                    continue;
-                }
-                break;
+        int n = nums.length;
+        if (n * k == 0) return new int[0];
+        
+        int[] result = new int[n - k + 1];
+        int resultIdx = 0;
+        
+        Deque<Integer> deque = new ArrayDeque<>();
+        
+        for (int i = 0; i < n; i++) {
+            while (!deque.isEmpty() && deque.peekFirst() < i - k + 1) {
+                deque.pollFirst();
             }
-            result[i] = value.value;
-            queue.add(value);
+            
+            while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
+                deque.pollLast();
+            }
+            
+            deque.addLast(i); 
+            
+            if (i >= k - 1) {
+                result[resultIdx++] = nums[deque.peekFirst()];
+            }
         }
-
+        
         return result;
-    }
-
-    public static class Value implements Comparable<Value>{
-        int value;
-        int position;
-
-        public Value(int value, int position) {
-            this.value = value;
-            this.position = position;
-        }
-
-        @Override
-        public int compareTo(Value o) {
-            return o.value >= this.value ? 1 : -1;
-        }
     }
 }
