@@ -1,22 +1,24 @@
 class MyStack {
-    Deque<Integer> queue;
+    List<Integer> list;
     public MyStack() {
-        queue = new LinkedList();
+        list = new ArrayList();
     }
 
     public void push(int x) {
-        queue.add(x);
+        list.add(x);
     }
 
     public int pop() {
-        return queue.pollLast();
+        int num = list.get(list.size()-1);
+        list.remove(list.size()-1);
+        return num;
     }
 
     public int top() {
-        return queue.getLast();
+        return list.get(list.size()-1);
     }
 
     public boolean empty() {
-        return queue.isEmpty();
+        return list.isEmpty();
     }
 }
