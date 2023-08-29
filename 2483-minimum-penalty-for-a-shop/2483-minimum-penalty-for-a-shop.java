@@ -1,33 +1,36 @@
 class Solution {
-    public int bestClosingTime(String customers) {
+    public int bestClosingTime(String customers) {  
         char[] chars = customers.toCharArray();
-        int plus = 0;
-        int minus = 0;
+        int open = 0;
         for (char aChar : chars) {
-            if(aChar=='Y') {
-                plus++;
-            } else {
+            if(isOpened(aChar)) {
+                open++;
             }
         }
 
-        int min = plus;
-        int po = 0;
+        int minValue = open;
+        int minValuePosition = 0;
         int[] values = new int[chars.length+1];
-        values[0] = plus;
+        values[0] = open;
+        int closed = 0;
         for (int i = 0; i < chars.length; i++) {
-            if(chars[i]=='Y') {
-                plus--;
+            if(isOpened(chars[i])) {
+                open--;
             } else {
-                minus++;
+                closed++;
             }
-            values[i+1] = plus+minus;
+            values[i+1] = open+closed;
 
-            if(values[i+1] < min) {
-                min = values[i+1];
-                po = i+1;
+            if(values[i+1] < minValue) {
+                minValue = values[i+1];
+                minValuePosition = i+1;
             }
         }
 
-        return po;
+        return minValuePosition;
+    }
+
+    private static boolean isOpened(char chars) {
+        return chars == 'Y';
     }
 }
