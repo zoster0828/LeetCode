@@ -19,9 +19,7 @@ class Solution {
         int remainder = lengthOfListNode % k;
         for(int multiple = 0 ; multiple < k ; multiple++) {
             result[multiple] = head;
-            int startPos = quotient*multiple;
-            int endPos = quotient*(multiple+1)+(remainder-- > 0 ? 1 : 0);
-            int nodeLength = endPos - startPos -1;
+            int nodeLength = getNodeLength(quotient, multiple, remainder--);
             head = moveToNextHead(head, nodeLength);
         }
 
@@ -35,6 +33,12 @@ class Solution {
             lengthOfListNode++;
         }
         return lengthOfListNode;
+    }
+
+    private int getNodeLength(int quotient, int multiple, int remainder) {
+        int startPos = quotient*multiple;
+        int endPos = quotient*(multiple+1)+(remainder > 0 ? 1 : 0);
+        return endPos - startPos -1;
     }
 
     private ListNode moveToNextHead(ListNode node, int nodeLength) {
