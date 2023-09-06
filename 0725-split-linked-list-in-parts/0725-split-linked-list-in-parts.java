@@ -9,7 +9,7 @@
  * }
  */
 class Solution {
-    public ListNode[] splitListToParts(ListNode head, int k) {
+public ListNode[] splitListToParts(ListNode head, int k) {
         ListNode[] result = new ListNode[k];
         ListNode temp = head;
 
@@ -17,10 +17,11 @@ class Solution {
 
         int quotient = lengthOfListNode / k;
         int remainder = lengthOfListNode % k;
-        for(int multiple = 0 ; multiple < k ; multiple++) {
-            result[multiple] = head;
-            int nodeLength = getNodeLength(quotient, multiple, remainder--);
-            head = moveToNextHead(head, nodeLength);
+        for(int partIndex = 0 ; partIndex < k ; partIndex++) {
+            result[partIndex] = head;
+            int partLength = calculatePartLength(quotient, partIndex, remainder--);
+            head = moveToNextHead(head, partLength);
+            head = popListNode(head);
         }
 
         return result;
@@ -35,7 +36,7 @@ class Solution {
         return lengthOfListNode;
     }
 
-    private int getNodeLength(int quotient, int multiple, int remainder) {
+    private int calculatePartLength(int quotient, int multiple, int remainder) {
         int startPos = quotient*multiple;
         int endPos = quotient*(multiple+1)+(remainder > 0 ? 1 : 0);
         return endPos - startPos -1;
@@ -52,12 +53,16 @@ class Solution {
             target = target.next;
         }
 
+
+        return target;
+    }
+
+    private ListNode popListNode(ListNode target) {
         if(target != null) {
             ListNode temp = target;
             target = target.next;
             temp.next = null;
         }
-
         return target;
     }
 }
