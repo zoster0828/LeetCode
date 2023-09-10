@@ -7,6 +7,9 @@ class Solution {
                     if(j == k) {
                         continue;
                     }
+                    if(i*i < j*j + k*k) {
+                        break;
+                    }
                     
                     if(i*i == j*j + k*k) {
                         result++;
