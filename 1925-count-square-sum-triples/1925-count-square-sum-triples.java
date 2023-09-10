@@ -7,7 +7,8 @@ class Solution {
                     if(i==j || j == k || i == k) {
                         continue;
                     }
-                    if(i*i + j*j == k*k) {
+                    
+                    if(i*i == j*j + k*k) {
                         result++;
                     }
                 }
