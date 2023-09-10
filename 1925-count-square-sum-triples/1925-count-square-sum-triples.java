@@ -12,6 +12,7 @@ class Solution {
                     
                     if(square == a + k*k) {
                         result+=2;
+                        break;
                     }
                 }
             }
