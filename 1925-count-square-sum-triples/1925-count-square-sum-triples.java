@@ -5,16 +5,13 @@ class Solution {
             int square = i*i;
             for(int j = 1 ; j < i ; j++) {
                 int a = j*j;
-                for(int k = 1 ; k < i ; k++) {
-                    if(j == k) {
-                        continue;
-                    }
+                for(int k = 1 ; k < j ; k++) {
                     if(square < a + k*k) {
                         break;
                     }
                     
                     if(square == a + k*k) {
-                        result++;
+                        result+=2;
                     }
                 }
             }
