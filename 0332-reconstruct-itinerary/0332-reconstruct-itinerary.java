@@ -11,6 +11,7 @@ class Solution {
                 stack.push(targets.get(stack.peek()).poll());
             route.add(0, stack.pop());
         }
+
         return route;
     }
 }
