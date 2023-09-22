@@ -1,21 +1,21 @@
 class Solution {
     public boolean isSubsequence(String s, String t) {        
-        int j = 0;
+        char[] input = s.toCharArray();
+        char[] output = t.toCharArray();
         
-        for(int i = 0 ; i < t.length() ; i++) {            
-            if(j == s.length()) {
-                   return true;
+        int o = 0;
+        for(int i = 0 ; i < input.length ;i++) {
+            boolean exists = false;
+            for(; o < output.length ; o++) {
+                if(input[i] == output[o]) {
+                    exists = true;
+                    o++;
+                    break;
+                }                
             }
-            
-            if(t.charAt(i) == s.charAt(j)) {
-                j++;                
-            }
+            if(! exists) return false;
         }
-        
-        if(j == s.length()) {
-            return true;
-        } else {
-            return false;
-        }
+
+        return true;
     }
 }
