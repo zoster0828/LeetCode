@@ -11,10 +11,11 @@ class Solution {
                     }
                     strb.append(chars[k]);                    
                 }
-                strb.append(' ');
+                if(i != chars.length)
+                    strb.append(' ');
             }
         }
-        String result = strb.toString();
-        return result.substring(0, result.length() -1); 
+        
+        return strb.toString();
     }
 }
