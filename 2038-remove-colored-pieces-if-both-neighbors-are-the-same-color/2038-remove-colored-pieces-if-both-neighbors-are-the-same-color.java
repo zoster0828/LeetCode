@@ -1,32 +1,51 @@
 class Solution {
-    public boolean winnerOfGame(String colors) {
-        int Acount = 0;
-        int Bcount = 0;
+public boolean winnerOfGame(String colors) {
         char[] chars = colors.toCharArray();
+        int length = chars.length;
+
+        int aliceScore = 0;
 
         int continuous = 0;
-        char prev = 'C';
-        for(int i = 0 ; i <= chars.length ; i ++) {
-            if(i != chars.length && prev == chars[i]) {
+        char prevCharacter = 'C';
+        for(int i = 0 ; i <= length ; i ++) {
+            if(isNotEndOfLine(length, i) && isContinue(prevCharacter, chars[i])) {
                 continuous++;
-            } else {
-                if(prev == 'A') {
-                    Acount += getScore(continuous);
-                } else if(prev == 'B') {
-                    Bcount += getScore(continuous);
-                }
-
-                if(i != chars.length) {
-                    prev = chars[i];
-                }
-                continuous = 1;
+                continue;
             }
+
+            if(isAliceScore(prevCharacter)) {
+                aliceScore += scoreCalculation(continuous);
+            } else if(isBobScore(prevCharacter)) {
+                aliceScore -= scoreCalculation(continuous);
+            }
+
+            if(isNotEndOfLine(length, i)) {
+                prevCharacter = chars[i];
+            }
+            continuous = 1;
+
         }
 
-        return Acount > Bcount;
+        return aliceScore > 0;
     }
 
-    private int getScore(int continuous) {
+    private static boolean isContinue(char prevCharacter, char chars) {
+        return prevCharacter == chars;
+    }
+
+    private boolean isBobScore(char prevCharacter) {
+        return prevCharacter == 'B';
+    }
+
+    private boolean isAliceScore(char prevCharacter) {
+        return prevCharacter == 'A';
+    }
+
+    private boolean isNotEndOfLine(int length, int i) {
+        return i != length;
+    }
+
+    private int scoreCalculation(int continuous) {
         if(continuous < 3) {
             return 0;
         } else {
