@@ -1,18 +1,29 @@
 class Solution {
     public List<Integer> majorityElement(int[] nums) {
-        Map<Integer, Integer> map = new HashMap();
         int v = nums.length / 3 + 1;
+        List<Integer> result = new ArrayList();
+
+        Arrays.sort(nums);
         
+        int prev = Integer.MIN_VALUE;
+        int count = 0;
         for(int num : nums) {
-            map.put(num, map.getOrDefault(num, 0)+1);
+            if(num == prev) {
+                count++;
+            } else {
+                if(count >= v) {
+                    result.add(prev);                    
+                }
+                
+                prev = num;
+                count = 1;
+            }
         }
         
-        List<Integer> result = new ArrayList();
-        map.forEach((key, value) -> {
-	        if(value >= v) {
-                result.add(key);
-            }
-        });
+        if(count >= v) {
+            result.add(prev);                    
+        }
+        
         return result;
     }
 }
