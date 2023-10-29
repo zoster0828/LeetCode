@@ -4,7 +4,7 @@ class Solution {
         
         for(int i = 0 ; i < n ; i++) {
             int right = (startIndex + i)%n;
-            int left = startIndex - i > -1 ? startIndex -i : n+(startIndex-i);
+            int left = startIndex - i < 0 ? n+(startIndex-i) : startIndex -i ;
             if(words[right].equals(target) || words[left].equals(target)) {
                 return i;
             }
