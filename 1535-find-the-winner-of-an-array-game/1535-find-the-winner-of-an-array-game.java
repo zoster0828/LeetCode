@@ -1,33 +1,24 @@
 class Solution {
     public int getWinner(int[] arr, int k) {
-        Queue<Integer> queue = new LinkedList();
-        for(int i = 1 ; i < arr.length ; i++) {
-            queue.add(arr[i]);
-        }
-        int init = arr[1];
-        boolean first = true;
         int champ = arr[0];
-        int consecutive = 0;
-        while(true) {            
-            int contender = queue.poll();            
-            if(init == contender && !first) {
-                return champ;
-            }
-            
-            if(first) {first = false;} 
-            
-            if(champ > contender) {
-                queue.add(contender);
-                consecutive++;                
+        int consecutiveWins = 0;
+
+        for (int i = 1; i < arr.length; i++) {
+            if (champ > arr[i]) {
+                consecutiveWins++;
             } else {
-                queue.add(champ);
-                champ = contender;
-                consecutive = 1;
+                champ = arr[i];
+                consecutiveWins = 1;
             }
-            
-            if(consecutive == k) {
+
+            // Once a player has k consecutive wins, they're the winner.
+            if (consecutiveWins == k) {
                 return champ;
             }
         }
+
+        // If we complete the loop without finding a winner, it means no player has won k times in a row.
+        // The player with the highest strength will be the winner.
+        return champ;
     }
 }
