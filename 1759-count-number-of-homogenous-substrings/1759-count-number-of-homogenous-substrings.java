@@ -27,6 +27,6 @@ class Solution {
             result = result %1000000007;
         }
         
-        return result%1000000007;
+        return result;
     }
 }
