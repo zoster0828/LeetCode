@@ -1,11 +1,14 @@
 class Solution {
-    public int minPairSum(int[] nums) {
-        int[] number = new int[100001];
+    public int minPairSum(int[] nums) {        
         
         int max = Integer.MIN_VALUE;
-        for(int num : nums) {
-            number[num]++;
+        for(int num : nums) {            
             max = Math.max(max, num);
+        }
+        
+        int[] number = new int[max+1];
+        for(int num : nums) {            
+            number[num]++;
         }
         
         int result = Integer.MIN_VALUE;
