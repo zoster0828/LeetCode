@@ -1,23 +1,18 @@
 class Solution {
     public int[] getSumAbsoluteDifferences(int[] nums) {
+        int result[] = new int[nums.length];
         int sum = 0;
-        for (int n : nums) {
+        for(int n : nums) {
             sum += n;
         }
-        int left = 0;
-        int right = sum;
-
-        int[] r = new int[nums.length];
-
-        for (int i = 0; i < nums.length; i++) {
-            int n = nums[i];
-            right -= n;
-
-            r[i] = n * i - left + right - n * (nums.length - i - 1);
-
-            left += n;
+        
+        int curr = sum;
+        for(int i = nums.length -1 ; i >= 0 ; i--) {
+            curr -= nums[i];
+            result[i] += (i * nums[i]) - curr;
+            result[i] += (sum-curr-nums[i]) - ((nums.length - i - 1) * nums[i]);
         }
-
-        return r;
+        
+        return result;
     }
 }
