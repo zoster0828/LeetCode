@@ -8,9 +8,10 @@ class Solution {
         
         int curr = sum;
         for(int i = nums.length -1 ; i >= 0 ; i--) {
+            int right = sum - curr;
             curr -= nums[i];
             result[i] += (i * nums[i]) - curr;
-            result[i] += (sum-curr-nums[i]) - ((nums.length - i - 1) * nums[i]);
+            result[i] += (right) - ((nums.length - i - 1) * nums[i]);
         }
         
         return result;
