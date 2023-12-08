@@ -14,27 +14,28 @@
  * }
  */
 class Solution {
-    String result = "";
+    StringBuilder builder;
     public String tree2str(TreeNode root) {                        
+        builder = new StringBuilder();
         draw(root);        
-        return result;
+        return builder.toString();
     }
     
     void draw(TreeNode node) {
-        result += node.val;
+        builder.append(node.val);
         if(node.left != null) {
-            result += "(";
+            builder.append("(");
             draw(node.left);
-            result += ")";
+            builder.append(")");
         }
         
         if(node.right != null) {
             if(node.left == null) {
-                result += "()";
+                builder.append("()");
             }
-            result += "(";
+            builder.append("(");
             draw(node.right);
-            result += ")";
+            builder.append(")");
         }
     }
 }
