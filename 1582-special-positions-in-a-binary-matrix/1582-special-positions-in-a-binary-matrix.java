@@ -1,44 +1,50 @@
 class Solution {
-    public int numSpecial(int[][] mat) {
-        int result = 0 ;
-        for(int i = 0 ; i < mat.length ; i++) {
-            for(int j = 0 ; j < mat[0].length ; j++) {
-                if(mat[i][j] == 1) {
-                    if(isSpecial(mat, i, j)) {
+        public int numSpecial(int[][] mat) {
+            List<Integer> row = new ArrayList();
+            List<Integer> col = new ArrayList();
+            for(int i = 0 ; i < mat.length ; i++) {
+                boolean exists = false;
+                for(int j = 0 ; j < mat[0].length ; j++) {
+                    if(mat[i][j] ==1) {
+                        if(exists) {
+                            exists = false;
+                            break;
+                        } else {
+                            exists = true;
+                        }
+                    }                
+                }
+                if(exists) {
+                    row.add(i);
+                }
+            }
+
+            for(int i = 0 ; i < mat[0].length ; i++) {
+                boolean exists = false;
+                for(int j = 0 ; j < mat.length ; j++) {
+                    if(mat[j][i] ==1) {
+                        if(exists) {
+                            exists = false;
+                            break;
+                        } else {
+                            exists = true;
+                        }
+                    }                
+                }
+                if(exists) {
+                    col.add(i);
+                }
+            }
+
+            int result = 0;
+            for(int i = 0 ; i < row.size() ; i++) {
+                for(int j = 0 ; j < col.size() ; j++) {
+                    if(mat[row.get(i)][col.get(j)] == 1) {
                         result++;
                     }
                 }
             }
+
+            return result;
         }
-        
-        return result;
-    }
-    
-    boolean isSpecial(int[][] mat, int h, int w) {
-        
-        for(int i = h -1 ; i >= 0 ; i--) {
-            if(mat[i][w] == 1) {
-                return false;
-            }
-        }
-        
-        for(int i = w -1 ; i >= 0 ; i--) {
-            if(mat[h][i] == 1) {
-                return false;
-            }
-        }
-        
-        for(int i = h +1 ; i < mat.length ; i++) {
-            if(mat[i][w] == 1) {
-                return false;
-            }
-        }
-        
-        for(int i = w +1 ; i < mat[0].length ; i++) {
-            if(mat[h][i] == 1) {
-                return false;
-            }
-        }
-        return true;
-    }
 }
