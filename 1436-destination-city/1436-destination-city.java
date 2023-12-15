@@ -5,12 +5,11 @@ class Solution {
             tour.put(path.get(0), path.get(1));
         }
         
-        for(Map.Entry<String, String> values : tour.entrySet()) {
-            if(!tour.containsKey(values.getValue())) {
-                return values.getValue();
-            }
+        String dest = paths.get(0).get(0);
+        while(tour.containsKey(dest)) {
+            dest = tour.get(dest);
         }
                
-        return "";
+        return dest;
     }
 }
