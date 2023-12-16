@@ -6,11 +6,14 @@ class Solution {
             return false;
         }
         
-        Arrays.sort(a);
-        Arrays.sort(b);
+        int[] nums = new int[26];
         
-        for(int i = 0 ; i < a.length ; i++) {
-            if(a[i] != b[i]) {
+        for(char c : a) {
+            nums[c-'a']++;
+        }
+        
+        for(char c : b) {
+            if (--nums[c - 'a'] < 0) {
                 return false;
             }
         }
