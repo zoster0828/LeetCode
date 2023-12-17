@@ -21,16 +21,20 @@ class FoodRatings {
 
     public void changeRating(String food, int newRating) {
         Food found = foodMap.get(food);
-        PriorityQueue<Food> queue = highest.get(found.cuisine);
-        queue.remove(found);
         Food newFood = new Food(found.name, found.cuisine, newRating);
+        found.name = "";
         foodMap.put(newFood.name, newFood);
-        queue.add(newFood);
+        highest.get(newFood.cuisine).add(newFood);                
     }
 
     public String highestRated(String cuisine) {
         PriorityQueue<Food> priorityQueue = highest.get(cuisine);
-        return priorityQueue.peek().name;
+        Food food = priorityQueue.peek();
+        while(food.name.equals("")) {
+            priorityQueue.poll();
+            food = priorityQueue.peek();
+        }
+        return food.name;
     }
 
     class Food implements Comparable<Food> {
