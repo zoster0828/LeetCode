@@ -1,27 +1,27 @@
 class Solution {
     public int minOperations(String s) {
         char[] chars = s.toCharArray();
-        int odd[] = new int[2];
-        int even[] = new int[2];
+        int odd = 0;
+        int even = 0;
         
                 
         for(int i = 0 ; i < chars.length ; i++) {
             if(i % 2 == 0) {
                 if(chars[i] == '1') {
-                    odd[1]++;                    
+                    odd++;                    
                 } else {
-                    even[1]++;
+                    even++;
                 }
             } else {
                 if(chars[i] == '0') {
-                    odd[0]++;                    
+                    odd++;                    
                 } else {
-                    even[0]++;
+                    even++;
                 }
             }
         }
         
-        int max = Math.max((odd[0]+odd[1]), (even[0]+even[1]));
+        int max = Math.max((odd), (even));
         
         return chars.length - max;
     }
