@@ -31,8 +31,6 @@ class Solution {
     boolean isNotValid(char c) {
         int l = c;
 
-        if(l>64 && l<91) l+=32;
-
         if(!((l > 96 && l < 123)|| (l > 47 && l < 58))) {return true;}
         
         return false;
