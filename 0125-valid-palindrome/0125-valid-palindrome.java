@@ -1,23 +1,37 @@
 class Solution {
     public boolean isPalindrome(String s) {     
-        int left=0;
-        int right= s.length()-1;
-        char l,r;
-        while(left<right){
-            l= s.charAt(left);
-            r= s.charAt(right);
+        s = s.toLowerCase();
+        char[] chars = s.toCharArray();
 
-            if(l>64 && l<91) l+=32;
-            if(r>64 && r<91) r+=32;
-
-            if(!((l > 96 && l < 123)|| (l > 47 && l < 58))) {left++; continue;}
-            if(!((r > 96 && r < 123)|| (r > 47 && r < 58))) {right--; continue;}
-            if(l!=r) return false;
-
-            right--;
-            left++;
-
+        int start = 0;
+        int end = chars.length - 1;
+        while(start <= end) {
+            if(isNotValid(chars[start])) {
+                start++;
+                continue;
+            }
+            if(isNotValid(chars[end])) {
+                end--;
+                continue;
+            }
+            if(chars[start] == chars[end]) {
+                start ++;
+                end --;
+            } else {
+                return false;
+            }
         }
+
         return true;
+    }
+    
+    boolean isNotValid(char c) {
+        int l = c;
+
+        if(l>64 && l<91) l+=32;
+
+        if(!((l > 96 && l < 123)|| (l > 47 && l < 58))) {return true;}
+        
+        return false;
     }
 }
