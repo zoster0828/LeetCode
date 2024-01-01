@@ -10,16 +10,19 @@ class Solution {
                 start++;
                 continue;
             }
+            
             if(isNotValid(chars[end])) {
                 end--;
                 continue;
             }
-            if(chars[start] == chars[end]) {
-                start ++;
-                end --;
-            } else {
+            
+            if(chars[start] != chars[end]) {
                 return false;
-            }
+                
+            } 
+            
+            start ++;
+            end --;
         }
 
         return true;
