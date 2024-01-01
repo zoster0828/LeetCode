@@ -1,6 +1,7 @@
 class Solution {
     public int findContentChildren(int[] g, int[] s) {
         if(g.length == 0 || s.length == 0) return 0;
+        
         Arrays.sort(g);
         Arrays.sort(s);
         int chpo = 0;
@@ -10,11 +11,10 @@ class Solution {
         while(true) {
             if(g[chpo] <= s[coopo]) {
                 result++;
-                chpo++;
-                coopo++;
-            } else {
-                coopo++;
-            }
+                chpo++;                
+            } 
+            
+            coopo++;
             
             if(chpo == g.length || coopo == s.length) break;
         }        
