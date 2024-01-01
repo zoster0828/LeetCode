@@ -11,10 +11,11 @@ class Solution {
         while(true) {
             if(g[chpo] <= s[coopo]) {
                 result++;
-                chpo++;                
-            } 
-            
-            coopo++;
+                chpo++;
+                coopo++;
+            } else {
+                coopo++;
+            }
             
             if(chpo == g.length || coopo == s.length) break;
         }        
