@@ -1,27 +1,50 @@
 class Solution {
     public String mostCommonWord(String paragraph, String[] banned) {
-        paragraph = paragraph.toLowerCase().replaceAll("\\W+"," ");
-        String[] arr = paragraph.split("\\s+");
+    String symbols="!?',;.";
 
-        int n = arr.length;
-        HashMap<String,Integer> hp = new HashMap<>();
-        for(int i=0; i < n; i++){
-            hp.put(arr[i],hp.getOrDefault(arr[i],0)+1);
-        }
+    HashMap<String,Integer>mp=new HashMap<>();
+    HashMap<String,Boolean>ban=new HashMap<>();
 
-        for(int i=0; i < banned.length; i++){
-            hp.remove(banned[i]);
-        }
+    String maxi=null;
+    int num=0;
+
+    for(int i=0;i<symbols.length();i++){
+        char temp=symbols.charAt(i);
+        paragraph=paragraph.replace(temp,' ');
+    }
+
+    String[]arr=paragraph.split(" ");
+
+    for(int i=0;i<banned.length;i++){
+
+    ban.put(banned[i],true);
+
+    }
+
+    for(int i=0;i<arr.length;i++){
+
+    arr[i]=arr[i].replace(" ","");
+
+    arr[i]=arr[i].toLowerCase();
+
+    if(!ban.containsKey(arr[i])&&arr[i]!=""){
+        
+    if(!mp.containsKey(arr[i]))mp.put(arr[i],1);
+    else mp.put(arr[i],mp.get(arr[i])+1);
+
+    if(mp.get(arr[i])>num){
+
+    maxi=arr[i];
+
+    num=mp.get(arr[i]);
+
+    }
+
+    }
 
 
-        int freq = 0;
-        String ans = "";
-        for(var a : hp.keySet()){
-            if(hp.get(a) > freq){
-                freq = hp.get(a);
-                ans = a;
-            }
-        }
-        return ans;
+    }
+
+    return maxi;
     }
 }
