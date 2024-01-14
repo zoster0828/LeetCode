@@ -27,7 +27,7 @@ class Solution {
         for(Map.Entry<Integer, Integer> value : counts1.entrySet()) {
             Integer cv2 = counts2.get(value.getKey());
             
-            if(cv2 == null || cv2 != value.getValue()) {
+            if(cv2 != value.getValue()) {
                 return false;
             }
         }
