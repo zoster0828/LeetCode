@@ -24,16 +24,6 @@ class Solution {
             counts2.put(char2[i], counts2.getOrDefault(char2[i],0)+1);
         }
         
-        for(int i = 0 ; i < char1.length ; i++) {
-            if(char1[i] != 0 && char2[i] == 0) {
-                return false;
-            }
-            
-            if(char2[i] != 0 && char1[i] == 0) {
-                return false;
-            }
-        }
-        
         for(Map.Entry<Integer, Integer> value : counts1.entrySet()) {
             Integer cv2 = counts2.get(value.getKey());
             
