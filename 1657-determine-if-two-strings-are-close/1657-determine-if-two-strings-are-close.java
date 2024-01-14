@@ -10,28 +10,21 @@ class Solution {
             char1[c-'a']++;
         }
         
-        Map<Integer, Integer> counts1 = new HashMap();
-        for(int i = 0 ; i < char1.length ; i++) {
-            counts1.put(char1[i], counts1.getOrDefault(char1[i],0)+1);
-        }
         
         for(char c : word2.toCharArray()) {
             if(char1[c-'a'] == 0) return false;
             char2[c-'a']++;
         }
         
-        Map<Integer, Integer> counts2 = new HashMap();
-        for(int i = 0 ; i < char2.length ; i++) {
-            counts2.put(char2[i], counts2.getOrDefault(char2[i],0)+1);
-        }
+        Arrays.sort(char1);
+        Arrays.sort(char2);
         
-        for(Map.Entry<Integer, Integer> value : counts1.entrySet()) {
-            Integer cv2 = counts2.get(value.getKey());
-            
-            if(cv2 != value.getValue()) {
+        for(int i = 0 ; i < 26 ; i++) {
+            if(char1[i] != char2[i]){
                 return false;
             }
         }
+        
         
         return true;
         
