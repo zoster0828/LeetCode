@@ -1,7 +1,9 @@
 class RandomizedSet {
     Set<Integer> set;
+    List<Integer> list;
     public RandomizedSet() {
         set = new HashSet();
+        list = new ArrayList();
     }
 
     public boolean insert(int val) {
@@ -14,7 +16,13 @@ class RandomizedSet {
 
     public int getRandom() {
         int a = new Random().nextInt(set.size());
-        Integer[] array = set.toArray(set.toArray(new Integer[0]));
-        return array[a];
+        Iterator<Integer> iterator = set.stream().iterator();
+        
+        for(int i = 0 ; i < set.size() ; i++) {
+            int result = iterator.next();
+            if(i == a) return result;            
+        }
+        
+        return -1;
     }
 }
