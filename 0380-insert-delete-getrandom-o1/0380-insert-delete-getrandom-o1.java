@@ -5,20 +5,11 @@ class RandomizedSet {
     }
 
     public boolean insert(int val) {
-        if(!set.contains(val)){
-            set.add(val);
-            return true;
-        }
-
-        return false;
+        return set.add(val);
     }
 
     public boolean remove(int val) {
-        if(set.contains(val)){
-           set.remove(val);
-           return true;
-        }
-        return false;
+        return set.remove(val);
     }
 
     public int getRandom() {
