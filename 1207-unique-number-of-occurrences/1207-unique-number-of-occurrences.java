@@ -5,14 +5,13 @@ class Solution {
             nums[i+1000]++;
         }
         
-        Set<Integer> set = new HashSet();
-        
+        boolean[] exists = new boolean[1001];
         for(int i : nums) {
-            if(i == 0) continue;
-            
-            if(set.contains(i)) return false;
-            
-            set.add(i);
+            if(i!=0) {
+                if(exists[i]) return false;
+                
+                exists[i] = true;
+            }
         }
         
         return true;
