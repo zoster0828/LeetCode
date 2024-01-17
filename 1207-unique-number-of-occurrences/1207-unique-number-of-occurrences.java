@@ -7,7 +7,7 @@ class Solution {
         
         boolean[] exists = new boolean[1001];
         for(int i : nums) {
-            if(i!=0) {
+            if(i>0) {
                 if(exists[i]) return false;
                 
                 exists[i] = true;
