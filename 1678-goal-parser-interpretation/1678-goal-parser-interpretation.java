@@ -1,6 +1,6 @@
 class Solution {
     public String interpret(String command) {
-        Queue<Character> stack = new LinkedList();
+        StringBuilder temp = new StringBuilder();
         StringBuilder result = new StringBuilder();
         for(int i = 0 ; i < command.length() ; i++) {
             char c = command.charAt(i);
@@ -11,13 +11,9 @@ class Solution {
                 continue;
             }
             
-            stack.add(c);
+            temp.append(c);
             
             if(c == ')') {
-                StringBuilder temp = new StringBuilder();
-                while(!stack.isEmpty()) {
-                    temp.append(stack.poll());
-                }
                 
                 String tempStr = temp.toString();
                 if(tempStr.equals("()")) {
@@ -27,6 +23,8 @@ class Solution {
                 if(tempStr.equals("(al)")) {
                     result.append("al");
                 }
+                
+                temp = new StringBuilder();
             }
         }
         
