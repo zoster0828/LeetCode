@@ -1,6 +1,6 @@
 class Solution {
     public String interpret(String command) {
-        Stack<Character> stack = new Stack();
+        Queue<Character> stack = new LinkedList();
         StringBuilder result = new StringBuilder();
         for(int i = 0 ; i < command.length() ; i++) {
             char c = command.charAt(i);
@@ -15,11 +15,11 @@ class Solution {
             
             if(c == ')') {
                 StringBuilder temp = new StringBuilder();
-                while(!stack.empty()) {
-                    temp.append(stack.pop());
+                while(!stack.isEmpty()) {
+                    temp.append(stack.poll());
                 }
                 
-                String tempStr = temp.reverse().toString();
+                String tempStr = temp.toString();
                 if(tempStr.equals("()")) {
                     result.append('o');
                 }
