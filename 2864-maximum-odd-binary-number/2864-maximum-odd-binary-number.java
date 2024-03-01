@@ -1,28 +1,23 @@
 class Solution {
     public String maximumOddBinaryNumber(String s) {
         boolean hasOne = false;
-        int zero = 0;
-        StringBuilder builder = new StringBuilder();
-        for(int i = 0 ; i < s.length(); i ++){
-            if(s.charAt(i) == '1') {                
+        char[] array = new char[s.length()];
+        for(int i = 0, k = 0, j = s.length()-2 ; i < s.length(); i++){
+            if(s.charAt(i) == '1') {
                 if(hasOne) {
-                    builder.append('1');
+                    array[k] = '1';
+                    k++;
                 }
                 else{
                     hasOne = true;
+                    array[s.length()-1] = '1';
                 }
             } else {
-                zero++;
+                array[j] = '0';
+                j--;
             }
         }
-        
-        while(zero > 0) {
-            builder.append('0');
-            zero--;
-        }
-        
-        builder.append('1');
-        
-        return builder.toString();
+
+        return new String(array);
     }
 }
