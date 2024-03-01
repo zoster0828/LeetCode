@@ -2,19 +2,18 @@ class Solution {
     public String maximumOddBinaryNumber(String s) {
         int one = 0;
         int zero = 0;
+        StringBuilder builder = new StringBuilder();
         for(int i = 0 ; i < s.length(); i ++){
-            if(s.charAt(i) == '1') {
-                one++;
+            if(s.charAt(i) == '1') {                
+                if(one == 1) {
+                    builder.append('1');
+                }
+                else{
+                    one++;
+                }
             } else {
                 zero++;
             }
-        }
-        
-        StringBuilder builder = new StringBuilder();
-        
-        while(one >= 2) {
-            builder.append('1');
-            one--;
         }
         
         while(zero > 0) {
