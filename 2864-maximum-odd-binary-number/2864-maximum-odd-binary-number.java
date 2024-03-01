@@ -1,15 +1,15 @@
 class Solution {
     public String maximumOddBinaryNumber(String s) {
-        int one = 0;
+        boolean hasOne = false;
         int zero = 0;
         StringBuilder builder = new StringBuilder();
         for(int i = 0 ; i < s.length(); i ++){
             if(s.charAt(i) == '1') {                
-                if(one == 1) {
+                if(hasOne) {
                     builder.append('1');
                 }
                 else{
-                    one++;
+                    hasOne = true;
                 }
             } else {
                 zero++;
