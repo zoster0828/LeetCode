@@ -21,6 +21,7 @@ class Solution {
     int getMaxNum(int a) {
         int max = 0;
         while(true) {
+            if(max == 9) break;
             max = Math.max(max, a%10);
             
             if(a < 10) {
