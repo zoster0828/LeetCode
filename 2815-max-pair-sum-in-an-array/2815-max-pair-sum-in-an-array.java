@@ -1,12 +1,15 @@
 class Solution {
     public int maxSum(int[] nums) {
         int max = -1;
-        for(int i = 0 ; i < nums.length-1 ; i++) {
-            for(int j = i+1 ; j < nums.length ; j++) {
-                int a = getMaxNum(nums[i]);
-                int b = getMaxNum(nums[j]);
+        int[] maxNums = new int[nums.length];
+        for(int i = 0 ; i < nums.length; i++) {
+            maxNums[i] = getMaxNum(nums[i]);
+        }
+        
+        for(int i = 0 ; i < nums.length - 1 ; i++) {
+            for(int j = i+1 ; j < nums.length ; j++) {                
                 
-                if(a==b) {
+                if(maxNums[i]==maxNums[j]) {
                     max = Math.max(nums[i]+nums[j], max);
                 }
             }
