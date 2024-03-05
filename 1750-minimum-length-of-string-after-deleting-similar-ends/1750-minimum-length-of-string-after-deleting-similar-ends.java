@@ -21,10 +21,6 @@ class Solution {
             }
         }
         
-        if(left > right) {
-            return 0;
-        }
-        
         return s.substring(left, right+1).length();
     }
 }
