@@ -10,15 +10,12 @@ class Solution {
             if(cl == cr) {
                 char c = cl;
                 
-                left++;
-                while(left < right && s.charAt(left) == c) {
-                    left++;
-                }
+                do{left++;}
+                while(left < right && s.charAt(left) == c);
                 
-                right--;
-                while(left < right && s.charAt(right) == c) {
-                    right--;
-                }
+                do{right--;}
+                while(left < right && s.charAt(right) == c);
+                    
             } else {
                 break;
             }
