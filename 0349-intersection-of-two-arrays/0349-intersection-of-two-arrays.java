@@ -8,14 +8,16 @@ class Solution {
         }
         
         for(int num : nums2) {
-            two[num]++;
+            if(one[num] > 0) {
+                two[num]++;
+            }             
         }
         
         boolean[] result = new boolean[1001];
         
         int size = 0;
         for(int i = 0 ; i < 1001 ; i++) {
-            if(one[i] > 0 && two[i] > 0) {
+            if(two[i] > 0) {
                 result[i] = true;
                 size++;
             }
