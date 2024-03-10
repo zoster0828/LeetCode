@@ -1,33 +1,24 @@
 class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
-        int[] one = new int[1001];
-        int[] two = new int[1001];
-        
-        for(int num : nums1) {
-            one[num]++;
-        }
-        
-        int size = 0;
-        for(int num : nums2) {
-            if(one[num] > 0) {
-                if(two[num] == 0) {
-                    size++;
-                }
-                
-                two[num]++;
-            }             
-        }        
-        
-        int[] r = new int[size];
-        
-        for(int i = 0, j =0 ; i < 1001 ; i++) {
-            if(two[i] > 0) {
-                r[j] = i;
-                j++;
-                if(j == size) {break;}
+        final int N = 1001;
+        var set = new int [N];
+        for (var i : nums1) set[i] = 1;
+        int resCount = 0;
+        for (var i : nums2) {
+            if (set[i] == 1) {
+                set[i] = 2;
+                ++resCount;
             }
         }
-        
-        return r;
+        var res = new int[resCount];
+        var i = 0;
+        var nums = nums2.length > nums1.length ? nums1 : nums2;
+        for (var v : nums) {
+            if (set[v] == 2) {
+                res[i++] = v;
+                set[v] = 1;
+            }
+        }
+        return res;
     }
 }
