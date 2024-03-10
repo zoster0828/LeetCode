@@ -27,6 +27,7 @@ class Solution {
             if(result[i]) {
                 r[j] = i;
                 j++;
+                if(j == size) {break;}
             }
         }
         
