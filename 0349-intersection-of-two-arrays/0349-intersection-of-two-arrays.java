@@ -7,26 +7,21 @@ class Solution {
             one[num]++;
         }
         
+        int size = 0;
         for(int num : nums2) {
             if(one[num] > 0) {
+                if(two[num] == 0) {
+                    size++;
+                }
+                
                 two[num]++;
             }             
-        }
-        
-        boolean[] result = new boolean[1001];
-        
-        int size = 0;
-        for(int i = 0 ; i < 1001 ; i++) {
-            if(two[i] > 0) {
-                result[i] = true;
-                size++;
-            }
-        }
+        }        
         
         int[] r = new int[size];
         
         for(int i = 0, j =0 ; i < 1001 ; i++) {
-            if(result[i]) {
+            if(two[i] > 0) {
                 r[j] = i;
                 j++;
                 if(j == size) {break;}
