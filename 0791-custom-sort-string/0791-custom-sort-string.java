@@ -17,10 +17,6 @@ class Solution {
         for(int i = 0 ; i < order.length() ; i++) {
             while(exists[order.charAt(i) - 'a'] > 0) {
                 result.append(order.charAt(i));
-                if(exists[order.charAt(i) - 'a'] == 1) {
-                    break;
-                }
-                
                 exists[order.charAt(i) - 'a']--;
             }
         }
