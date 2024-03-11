@@ -3,13 +3,17 @@ class Solution {
         char[] input = s.toCharArray();
         
         int[] exists = new int[26];
+        StringBuilder tail = new StringBuilder();
         for(int i = 0 ; i < input.length ; i++) {
             if(order.contains(input[i]+"")) {
                 exists[input[i]-'a']++;
-            }
+            }else {
+                tail.append(input[i]);
+            }                        
         }
         
         StringBuilder result = new StringBuilder();
+        
         for(int i = 0 ; i < order.length() ; i++) {
             while(exists[order.charAt(i) - 'a'] > 0) {
                 result.append(order.charAt(i));
@@ -21,14 +25,6 @@ class Solution {
             }
         }
         
-        for(int i = 0 ; i < input.length ; i++) {
-            if(exists[input[i] - 'a'] == 1) {
-                continue;
-            } else {
-                result.append(input[i]);
-            }
-        }
-        
-        return result.toString();
+        return result.toString() + tail.toString();
     }
 }
