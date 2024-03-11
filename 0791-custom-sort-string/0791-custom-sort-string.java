@@ -1,8 +1,8 @@
 class Solution {
     public String customSortString(String order, String s) {
         boolean[] orders = new boolean[26];
-        for(char c : order.toCharArray()) {
-            orders[c-'a'] = true;
+        for(int i = 0 ; i < order.length() ; i++) {
+            orders[order.charAt(i)-'a'] = true;
         }
         
         
