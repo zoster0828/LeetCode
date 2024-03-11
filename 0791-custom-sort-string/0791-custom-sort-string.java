@@ -1,14 +1,18 @@
 class Solution {
     public String customSortString(String order, String s) {
-        char[] input = s.toCharArray();
+        boolean[] orders = new boolean[26];
+        for(char c : order.toCharArray()) {
+            orders[c-'a'] = true;
+        }
+        
         
         int[] exists = new int[26];
         StringBuilder tail = new StringBuilder();
-        for(int i = 0 ; i < input.length ; i++) {
-            if(order.contains(input[i]+"")) {
-                exists[input[i]-'a']++;
+        for(int i = 0 ; i < s.length() ; i++) {
+            if(orders[s.charAt(i)-'a']) {
+                exists[s.charAt(i)-'a']++;
             }else {
-                tail.append(input[i]);
+                tail.append(s.charAt(i));
             }                        
         }
         
