@@ -1,11 +1,11 @@
 class Solution {
     public int firstMissingPositive(int[] nums) {
-        int[] n = new int[100002];
+        int[] n = new int[nums.length+2];
         
         int pos = 1;
         
         for(int i = 0 ; i < nums.length ; i++) {
-            if(nums[i] < pos || nums[i] > 100000) {
+            if(nums[i] < pos || nums[i] > nums.length) {
                 continue;
             }
             
