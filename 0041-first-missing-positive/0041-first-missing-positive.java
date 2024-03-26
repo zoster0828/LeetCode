@@ -5,7 +5,7 @@ class Solution {
         int pos = 1;
         
         for(int i = 0 ; i < nums.length ; i++) {
-            if(nums[i] < 1 || nums[i] > 100000) {
+            if(nums[i] < pos || nums[i] > 100000) {
                 continue;
             }
             
