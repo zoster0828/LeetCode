@@ -1,5 +1,9 @@
 class Solution {
     public boolean isIsomorphic(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+        
         Character[] map = new Character[128];
         Character[] reverse = new Character[128];
         for(int i = 0 ; i < s.length() ; i++) {
