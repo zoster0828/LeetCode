@@ -17,7 +17,7 @@ class Solution {
                     return false;
                 }
                 
-                if(reverse.get(a2) != a1) {
+                if(res != a1) {
                     return false;
                 }
             }
