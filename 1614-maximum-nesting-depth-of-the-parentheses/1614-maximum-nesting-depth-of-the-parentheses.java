@@ -6,7 +6,8 @@ class Solution {
             Character candidate = s.charAt(i);
             if(candidate == '(') depth++;
             if(candidate == ')') depth--;
-            result = Math.max(depth, result);
+            
+            if(depth > result) result = depth;
         }
         
         return result;
