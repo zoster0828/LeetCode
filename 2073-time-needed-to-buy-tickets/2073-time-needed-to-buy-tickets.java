@@ -3,19 +3,17 @@ class Solution {
         int result = 0;
         int me = tickets[k];
         
-        for(int i = 0 ; i <= k ; i++) {
-            if(tickets[i] <= me) {
-                result += tickets[i];
-            } else {
-                result += me;
-            }
-        }
         
-        for(int i = k+1 ; i < tickets.length ; i++) {
+        for(int i = 0 ; i < tickets.length ; i++) {
             if(tickets[i] < me) {
                 result += tickets[i];
-            } else {
-                result += (me-1);
+            } else { 
+            
+                if(i <= k){
+                    result += me;
+                } else {
+                    result += (me-1);
+                }
             }
         }
         
