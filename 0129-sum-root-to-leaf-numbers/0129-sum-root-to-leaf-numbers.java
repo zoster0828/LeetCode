@@ -14,29 +14,20 @@
  * }
  */
 class Solution {
-    Queue<TreeNode> q = new LinkedList();
-    List<String> list = new ArrayList();
-    int result = 0;
     public int sumNumbers(TreeNode root) {
         if(root == null) {return 0;}
         
-        bfs("", root);
-    
-        
-        return result;
+        return bfs(root, 0);    
     } 
     
-    public void bfs(String value, TreeNode root) {
-        String v = value + root.val;        
+    public int bfs(TreeNode root, int result) {      
+        if(root == null) return 0;
         
-        if(root.left == null && root.right == null) result += Integer.parseInt(v);
-        
-        if(root.left != null) {
-            bfs(v, root.left);
+        int value = result*10 + root.val;
+        if(root.left == null && root.right == null) {
+            return value;
         }
         
-        if(root.right != null) {
-            bfs(v, root.right);
-        }
+        return bfs(root.left, value) + bfs(root.right, value);
     }
 }
