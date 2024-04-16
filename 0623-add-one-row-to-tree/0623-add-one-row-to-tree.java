@@ -14,42 +14,27 @@
  * }
  */
 class Solution {
-    Queue<TreeNode> q = new LinkedList();    
     public TreeNode addOneRow(TreeNode root, int val, int depth) {        
-        if(root == null) {return root;}
         if(depth == 1) {
             root = new TreeNode(val, root, null);
             return root;
         }
         
-        q.add(root);
-        
-        int height = 1;
-        while(!q.isEmpty()) {
-            if(height == depth-1) {
-                int length = q.size();
-                for(int i = 0 ; i < length ; i++) {
-                    TreeNode node = q.poll();
-                    if(node == null) continue;
-                    
-                    node.left = new TreeNode(val, node.left, null);
-                    node.right = new TreeNode(val, null, node.right);
-                }
-                
-                break;
-            } else {                
-                int length = q.size();
-                for(int i = 0 ; i < length ; i++) {
-                    TreeNode node = q.poll();
-                    if(node == null) continue;
-                    
-                    q.add(node.left);
-                    q.add(node.right);
-                }
-            }
-            height++;
-        }
+        dfs(root, val, depth, 1);
         
         return root;
+    }
+    
+    public void dfs(TreeNode root, int val, int depth, int curr) {
+        if(root == null) return;
+        
+        if(curr == depth - 1) {
+            root.left = new TreeNode(val, root.left, null);
+            root.right = new TreeNode(val, null, root.right);
+            return;
+        } else {
+            dfs(root.left, val, depth, curr+1);
+            dfs(root.right, val, depth, curr+1);
+        }
     }
 }
