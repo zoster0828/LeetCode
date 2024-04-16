@@ -32,12 +32,8 @@ class Solution {
                     TreeNode node = q.poll();
                     if(node == null) continue;
                     
-                    TreeNode left = node.left;
-                    TreeNode newLeft = new TreeNode(val, left, null);
-                    node.left = newLeft;
-                    TreeNode right = node.right;
-                    TreeNode newRight = new TreeNode(val, null, right);
-                    node.right = newRight;
+                    node.left = new TreeNode(val, node.left, null);
+                    node.right = new TreeNode(val, null, node.right);
                 }
                 
                 break;
