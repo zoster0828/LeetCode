@@ -14,40 +14,34 @@
  * }
  */
 class Solution {
-    String list[] = new String[26];
+    String result;
     public String smallestFromLeaf(TreeNode root) {        
         dfs(root, "");
         
-        for(int i = 0 ; i < 26 ; i++) {
-            if(list[i] != null) {
-                return list[i];
-            }
-        }
-        
-        return "";
+        return result;
     }
     
-    public void dfs(TreeNode root, String result) {
+    public void dfs(TreeNode root, String temp) {
         if(root == null) return;
         
         char c = (char) ('a' + root.val);
-        result = c + result;
+        temp = c + temp;
         
         
         
         if(root.left == null && root.right == null) {
-            if(list[c-'a'] == null) {
-                list[c-'a'] = result;                          
+            if(result == null) {
+                result = temp;                          
             } else {
-                if(list[c-'a'].compareTo(result) > 0) {
-                    list[c-'a'] = result;
+                if(result.compareTo(temp) > 0) {
+                    result = temp;
                 } else {
                     return;
                 }
             }
         }
         
-        dfs(root.left, result);
-        dfs(root.right, result);
+        dfs(root.left, temp);
+        dfs(root.right, temp);
     }
 }
