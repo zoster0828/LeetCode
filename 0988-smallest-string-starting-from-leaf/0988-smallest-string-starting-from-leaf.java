@@ -15,6 +15,7 @@
  */
 class Solution {
     String list[] = new String[26];
+    int max = 26;
     public String smallestFromLeaf(TreeNode root) {        
         dfs(root, "");
         
@@ -35,7 +36,10 @@ class Solution {
         
         if(root.left == null && root.right == null) {
             if(list[c-'a'] == null) {
-                list[c-'a'] = result;
+                if((c-'a') < max) {
+                    list[c-'a'] = result;
+                    max = c-'a';
+                }
             } else {
                 if(list[c-'a'].compareTo(result) > 0) {
                     list[c-'a'] = result;
