@@ -15,33 +15,41 @@
  */
 class Solution {
     String result;
-    public String smallestFromLeaf(TreeNode root) {        
-        dfs(root, "");
+    public String smallestFromLeaf(TreeNode root) {      
+        int depth = getDepth(root, 0);
+        dfs(root, new char[depth], depth-1);
         
         return result;
     }
     
-    public void dfs(TreeNode root, String temp) {
+    public int getDepth(TreeNode root, int curr) {
+        if(root == null) return 0;
+        
+        return Math.max(getDepth(root.left, curr), getDepth(root.right, curr)) +1;
+    }
+    
+    public void dfs(TreeNode root, char[] temp, int depth) {
         if(root == null) return;
         
         char c = (char) ('a' + root.val);
-        temp = c + temp;
+        temp[depth] = c;
         
         
         
         if(root.left == null && root.right == null) {
+            String candid = new String(temp, depth, temp.length-depth);
             if(result == null) {
-                result = temp;                          
+                result = candid;                          
             } else {
-                if(result.compareTo(temp) > 0) {
-                    result = temp;
+                if(result.compareTo(candid) > 0) {
+                    result = candid;
                 } else {
                     return;
                 }
             }
         }
         
-        dfs(root.left, temp);
-        dfs(root.right, temp);
+        dfs(root.left, temp, depth-1);
+        dfs(root.right, temp, depth-1);
     }
 }
