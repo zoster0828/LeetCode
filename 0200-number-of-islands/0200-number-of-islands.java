@@ -13,9 +13,7 @@ class Solution {
         return count;
     }
 
-    public void find(char[][] grid, int w, int h) {
-        if(grid[w][h] == '0') {return;}
-        
+    public void find(char[][] grid, int w, int h) {        
         grid[w][h] = '0';
         
         if(w > 0 && grid[w-1][h] == '1') {     
