@@ -1,8 +1,12 @@
 class Solution {
+    int width = 0;
+    int height = 0;
     public int numIslands(char[][] grid) {
+        width = grid.length;
+        height = grid[0].length;
         int count = 0;
-        for(int w = 0 ; w < grid.length ; w++){
-            for(int h = 0 ; h < grid[0].length ; h++){
+        for(int w = 0 ; w < width ; w++){
+            for(int h = 0 ; h < height ; h++){
                 if(grid[w][h] == '1'){
                     count++;
                     find(grid, w, h);
@@ -21,11 +25,11 @@ class Solution {
             find(grid, w-1, h);
         }
 
-        if(grid[0].length - 1 > h && grid[w][h+1] == '1') {
+        if(height - 1 > h && grid[w][h+1] == '1') {
             find(grid, w, h+1);
         }
 
-        if(grid.length - 1 > w && grid[w+1][h] == '1') {
+        if(width - 1 > w && grid[w+1][h] == '1') {
             find(grid, w+1, h);
         }
 
