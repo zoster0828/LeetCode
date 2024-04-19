@@ -15,11 +15,10 @@ class Solution {
 
     public void find(char[][] grid, int w, int h) {
         if(grid[h][w] == '0') {return;}
-        if(grid[h][w] == '1') {
-            grid[h][w] = '0';
-        }
-
-        if(w > 0) {
+        
+        grid[h][w] = '0';
+        
+        if(w > 0) {     
             find(grid, w-1, h);
         }
 
