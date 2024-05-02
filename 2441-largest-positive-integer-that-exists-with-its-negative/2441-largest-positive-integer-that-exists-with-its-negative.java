@@ -7,7 +7,7 @@ class Solution {
             int absolute = Math.abs(nums[i]);            
             candidates[nums[i] < 0 ? absolute+1000 : absolute] = true;            
             
-            if(candidates[absolute] && candidates[absolute+1000]) {
+            if(absolute > max && candidates[absolute] && candidates[absolute+1000]) {
                 max = Math.max(absolute, max);
             }
         }
