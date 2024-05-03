@@ -1,43 +1,18 @@
 class Solution {
     public int compareVersion(String version1, String version2) {
-        Version versionOne = parse(version1);
-        Version versionTwo = parse(version2);
+        String[] v1 = version1.split("\\.");
+        String[] v2 = version2.split("\\.");
 
-        return versionOne.compare(versionTwo);
-    }
-
-    private Version parse(String version1) {
-        return new Version(version1.split("\\."));
-    }
-
-    private class Version {
-        int[] depth;
-
-        public Version(String[] split) {
-            depth = new int[split.length];
-
-            for (int i = 0; i < split.length; i++) {
-                depth[i] = Integer.parseInt(split[i]);
+        int length = Math.max(v1.length, v2.length);
+        for (int i = 0; i < length; i++) {
+            int num1 = i < v1.length ? Integer.parseInt(v1[i]) : 0;
+            int num2 = i < v2.length ? Integer.parseInt(v2[i]) : 0;
+            if (num1 > num2) {
+                return 1;
+            } else if (num1 < num2) {
+                return -1;
             }
         }
-
-        public int compare(Version versionTwo) {
-            int i = 0;
-            while(i < Math.min(this.depth.length, versionTwo.depth.length)) {
-                if(this.depth[i] > versionTwo.depth[i]) return 1;
-                else if(this.depth[i] < versionTwo.depth[i]) return -1;
-                i++;
-            }
-
-            for(;i < depth.length ; i++) {
-                if(depth[i] != 0) return 1;
-            }
-
-            for(;i < versionTwo.depth.length ; i++) {
-                if(versionTwo.depth[i] != 0) return -1;
-            }
-
-            return 0;
-        }
+        return 0;
     }
 }
