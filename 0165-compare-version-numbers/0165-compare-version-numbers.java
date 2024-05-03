@@ -22,29 +22,19 @@ class Solution {
         }
 
         public int compare(Version versionTwo) {
-            if(this.depth.length != versionTwo.depth.length) {
-                int i = 0;
-                while(i < Math.min(this.depth.length, versionTwo.depth.length)) {
-                    if(this.depth[i] > versionTwo.depth[i]) return 1;
-                    else if(this.depth[i] < versionTwo.depth[i]) return -1;
-                    i++;
-                }
-
-                for(;i < depth.length ; i++) {
-                    if(depth[i] != 0) return 1;
-                }
-
-                for(;i < versionTwo.depth.length ; i++) {
-                    if(versionTwo.depth[i] != 0) return -1;
-                }
-
-                return 0;
-            }
-
             int i = 0;
-            for (; i < this.depth.length ; i++) {
+            while(i < Math.min(this.depth.length, versionTwo.depth.length)) {
                 if(this.depth[i] > versionTwo.depth[i]) return 1;
                 else if(this.depth[i] < versionTwo.depth[i]) return -1;
+                i++;
+            }
+
+            for(;i < depth.length ; i++) {
+                if(depth[i] != 0) return 1;
+            }
+
+            for(;i < versionTwo.depth.length ; i++) {
+                if(versionTwo.depth[i] != 0) return -1;
             }
 
             return 0;
