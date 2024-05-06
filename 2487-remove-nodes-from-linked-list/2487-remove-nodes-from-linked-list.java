@@ -10,27 +10,25 @@
  */
 class Solution {
     public ListNode removeNodes(ListNode head) {
-        ListNode[] stack = new ListNode[100001];
-        int po = 0;
+        List<ListNode> list = new ArrayList();
         
         ListNode temp = head.next;        
-        stack[po] = head;
-        po++;
+        list.add(head);
         
         ListNode result = head;
         while(temp != null) {
             while(true) {
-                if(po == 0) {
+                if(list.size() == 0) {
                     result = temp;
-                    stack[po++] = result;
+                    list.add(result);
                     break;
                 }
                 
-                if(stack[po-1].val < temp.val) {
-                    po--;
+                if(list.get(list.size()-1).val < temp.val) {
+                    list.remove(list.size()-1);
                 } else {
-                    stack[po-1].next = temp;
-                    stack[po++] = temp;
+                    list.get(list.size()-1).next = temp;
+                    list.add(temp);
                     break;
                 }
             }
