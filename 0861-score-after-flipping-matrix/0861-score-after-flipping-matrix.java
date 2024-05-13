@@ -39,11 +39,11 @@ class Solution {
     }
 
     int rowToNum(int[] grid) {
-        StringBuilder builder = new StringBuilder();
-        for(int i = 0 ; i < grid.length ; i++){
-            builder.append(grid[i]);
+        int decimalNumber = 0;
+        for (int i = 0; i < grid.length; i++) {
+            decimalNumber = decimalNumber * 2 + grid[i];
         }
 
-        return Integer.parseInt(builder.toString(), 2);
+        return decimalNumber;
     }
 }
