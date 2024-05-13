@@ -19,13 +19,13 @@ class Solution {
         return result;
     }
 
-    void rowFlip(int[] grid) {
+    private void rowFlip(int[] grid) {
         for(int i = 0 ; i < grid.length ; i++){
             grid[i] = (grid[i] == 0 ? 1 : 0);
         }
     }
 
-    void colFlip(int[][] grid, int col) {
+    private void colFlip(int[][] grid, int col) {
         int count = 0;
         for(int i = 0 ; i < grid.length ; i++) {
             count += grid[i][col];
@@ -38,7 +38,7 @@ class Solution {
         }
     }
 
-    int rowToNum(int[] grid) {
+    private int rowToNum(int[] grid) {
         int decimalNumber = 0;
         for (int i = 0; i < grid.length; i++) {
             decimalNumber = decimalNumber * 2 + grid[i];
