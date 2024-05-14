@@ -12,7 +12,7 @@ class Solution {
     }
     
     void get(int sum, int[][] grid, int i, int j, boolean[][] visited) {
-        if(visited[i][j] || grid[i][j] == 0 ) {
+        if(visited[i][j]) {
             max = Math.max(max, sum);
             return ;
         }
@@ -20,11 +20,12 @@ class Solution {
         sum += grid[i][j];        
         visited[i][j] = true;
         
-        if(i!=0) get(sum, grid, i-1, j, visited);
-        if(j!=0) get(sum, grid, i, j-1, visited);
-        if(i!=grid.length-1) get(sum, grid, i+1, j, visited);
-        if(j!=grid[0].length-1) get(sum, grid, i, j+1, visited);
+        if(i!=0 && grid[i-1][j] != 0) get(sum, grid, i-1, j, visited);
+        if(j!=0 && grid[i][j-1] != 0) get(sum, grid, i, j-1, visited);
+        if(i!=grid.length-1 && grid[i+1][j] != 0) get(sum, grid, i+1, j, visited);
+        if(j!=grid[0].length-1 && grid[i][j+1] != 0) get(sum, grid, i, j+1, visited);
         
-        visited[i][j] = false;        
+        visited[i][j] = false;
+        max = Math.max(max, sum);
     }
 }
