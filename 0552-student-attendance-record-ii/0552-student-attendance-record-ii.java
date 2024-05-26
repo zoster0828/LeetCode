@@ -7,24 +7,24 @@ class Solution {
         return (int) (get(n, 0, 0) % mod);
     }
 
-    long get(int n, int absolute, int late) {
-        if (absolute >= 2 || late >= 3) {
+    long get(int n, int abscent, int late) {
+        if (abscent >= 2 || late >= 3) {
             return 0;
         }
         if (n == 0) {
             return 1;
         }
 
-        if (arrays[n][absolute][late] != null) {
-            return arrays[n][absolute][late];
+        if (arrays[n][abscent][late] != null) {
+            return arrays[n][abscent][late];
         }
         long ans = 0;
-        long p1 = get(n - 1, absolute + 1, 0) % mod;
-        long p2 = get(n - 1, absolute, 0) % mod;
-        long p3 = get(n - 1, absolute, late + 1) % mod;
+        long p1 = get(n - 1, abscent + 1, 0) % mod;
+        long p2 = get(n - 1, abscent, 0) % mod;
+        long p3 = get(n - 1, abscent, late + 1) % mod;
 
-        arrays[n][absolute][late] = ((p1 + p2 + p3) % mod);
-        return arrays[n][absolute][late];
+        arrays[n][abscent][late] = ((p1 + p2 + p3) % mod);
+        return arrays[n][abscent][late];
     }
 
 }
