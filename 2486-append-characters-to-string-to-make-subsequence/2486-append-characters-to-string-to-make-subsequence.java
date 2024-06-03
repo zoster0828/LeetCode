@@ -5,7 +5,7 @@ class Solution {
         int slen = s.length();
         for(int i = 0 ; i < slen ; i++) {
             char c = s.charAt(i);
-            if(po >= tlen) break;
+            if(po >= tlen) return 0;
 
             if(t.charAt(po) == c) {
                 po++;
