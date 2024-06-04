@@ -1,9 +1,9 @@
 class Solution {
     public int longestPalindrome(String s) {
-        int[] chars = new int[70];
+        int[] chars = new int[52];
         for(int i = 0 ; i < s.length() ; i++) {
             int n = s.charAt(i) - 65;
-
+            if(n > 25) n -= 6;
             chars[n] ++;
         }
 
