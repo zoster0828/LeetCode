@@ -7,15 +7,15 @@ class Solution {
         }
 
         int result = 0;
-        boolean odd = false;
+        int odd = 0;
         for(int i = 0 ; i < chars.length ; i ++) {
             if(chars[i] % 2 ==0) result+=chars[i];
             else {
                 result+=(chars[i] - 1);
-                odd = true;
+                odd = 1;
             }
         }
 
-        return odd ? result + 1 : result;
+        return result + odd;
     }
 }
