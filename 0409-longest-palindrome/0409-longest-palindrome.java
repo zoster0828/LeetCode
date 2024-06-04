@@ -1,8 +1,8 @@
 class Solution {
     public int longestPalindrome(String s) {
         int[] chars = new int[58];
-        int n = s.length();
-        for(int i = 0 ; i < n ; i++) {
+        int length = s.length();
+        for(int i = 0 ; i < length ; i++) {
             int n = s.charAt(i) - 65;
             chars[n] ++;
         }
