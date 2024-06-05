@@ -13,6 +13,7 @@ class Solution {
             int min = Integer.MAX_VALUE;
             for(int i = 0 ; i < words.length ; i++) {
                 min = Math.min(min, array[i][k]);
+                if(min == 0) break;
             }
             
             if(min != 0) {
