@@ -18,12 +18,25 @@ class Solution {
             
             if(min != 0) {
                 for(int l = 0 ; l < min ; l++) {
-                    results.add(Character.toString((char) (k + 'a')));
+                    results.add(getCharString(k));
                 }
             }
         }
 
         return results;
 
+    }
+
+    private static final String[] cache;
+
+    static {
+        cache = new String[26];
+        for (int i = 0; i < 26; i++) {
+            cache[i] = Character.toString((char) ('a' + i));
+        }
+    }
+
+    public String getCharString(int k) {
+        return cache[k];
     }
 }
