@@ -18,7 +18,7 @@ class Solution {
             
             if(min != 0) {
                 for(int l = 0 ; l < min ; l++) {
-                    results.add(((char)(k+'a'))+"");
+                    results.add(Character.toString((char) (k + 'a')));
                 }
             }
         }
