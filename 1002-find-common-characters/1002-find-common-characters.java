@@ -3,8 +3,9 @@ class Solution {
         int[][] array = new int[words.length][26];        
 
         for(int i = 0 ; i < words.length ; i++) {
-            for(int k = 0 ; k < words[i].length() ; k++) {
-                array[i][words[i].charAt(k)-'a']++;
+            char[] chars = words[i].toCharArray();
+            for(int k = 0 ; k < chars.length; k++) {
+                array[i][chars[k]-'a']++;
             }            
         }
 
