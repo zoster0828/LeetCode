@@ -17,8 +17,7 @@ class Solution {
             if(temp.val == 0) {
                 temp = temp.next;
                 if(temp == null) break;
-                ListNode start = new ListNode(0);                                
-                if(answer == null) answer = start;
+                ListNode start = new ListNode(0);              
 
                 while(temp.val != 0) {
                     start.val += temp.val;
@@ -26,7 +25,8 @@ class Solution {
                 }
                 
                 if(result == null) {
-                    result = answer;
+                    result = start;
+                    answer = start;
                 } 
                 else {
                     result.next = start;
