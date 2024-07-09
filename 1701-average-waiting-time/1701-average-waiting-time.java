@@ -4,9 +4,9 @@ class Solution {
         double result = 0;
         for(int i = 0 ; i < customers.length ; i++) {
             prev = customers[i][0] > prev ? customers[i][0] : prev;
-
-            result += (prev + customers[i][1]) - customers[i][0];
             prev = (prev + customers[i][1]);
+            result += prev - customers[i][0];
+            
         }
 
         return result / customers.length;
