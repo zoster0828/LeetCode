@@ -7,13 +7,13 @@ class Solution {
 
         for(String log : logs) {
             if(log.equals(UP)) {
-                depth -= 1;
-                if(depth < 0) depth = 0;
-
+                depth = Math.max(0, depth-1);
                 continue;
             } 
 
-            if(log.equals(CURRENT)) {continue;}
+            if(log.equals(CURRENT)) {
+                continue;
+            }
 
             depth++;
         }
