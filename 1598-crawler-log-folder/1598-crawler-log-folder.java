@@ -6,16 +6,13 @@ class Solution {
         int depth = 0;
 
         for(String log : logs) {
-            if(log.equals(UP)) {
-                depth = Math.max(0, depth-1);
-                continue;
-            } 
-
-            if(log.equals(CURRENT)) {
-                continue;
+            if(log.charAt(0) == '.') {
+                if(log.charAt(1) == '.') {
+                    depth = Math.max(depth-1, 0);
+                }
+            } else {
+                depth++;
             }
-
-            depth++;
         }
 
         return depth;
