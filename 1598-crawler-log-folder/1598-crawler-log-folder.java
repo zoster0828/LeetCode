@@ -1,6 +1,4 @@
 class Solution {
-    public static String UP = "../";
-    public static String CURRENT = "./";    
 
     public int minOperations(String[] logs) {
         int depth = 0;
