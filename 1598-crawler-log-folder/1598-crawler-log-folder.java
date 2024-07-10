@@ -6,7 +6,8 @@ class Solution {
         for(String log : logs) {
             if(log.charAt(0) == '.') {
                 if(log.charAt(1) == '.') {
-                    depth = Math.max(depth-1, 0);
+                    depth = depth == 0 ? 0 : depth-1;
+                    
                 }
             } else {
                 depth++;
