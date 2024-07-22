@@ -1,18 +1,30 @@
 class Solution {
     public String[] sortPeople(String[] names, int[] heights) {
-        int[][] result = new int[names.length][2];
-        for(int i = 0 ; i < names.length ; i ++) {
-            result[i][0] = i;
-            result[i][1] = heights[i];
+        // 이름과 키를 쌍으로 저장할 클래스 정의
+        class Person {
+            String name;
+            int height;
+            
+            Person(String name, int height) {
+                this.name = name;
+                this.height = height;
+            }
         }
         
-        Arrays.sort(result, Comparator.comparingInt(arr -> -arr[1]));        
-        
-        String[] ans = new String[names.length];
-        for(int i = 0 ; i < names.length ; i ++) {
-            ans[i] = names[result[i][0]];
+        Person[] people = new Person[names.length];
+        for (int i = 0; i < names.length; i++) {
+            people[i] = new Person(names[i], heights[i]);
         }
         
-        return ans;
+        // 내림차순 정렬
+        Arrays.sort(people, (a, b) -> b.height - a.height);
+        
+        // 정렬된 이름 배열 생성
+        String[] sortedNames = new String[names.length];
+        for (int i = 0; i < people.length; i++) {
+            sortedNames[i] = people[i].name;
+        }
+        
+        return sortedNames;
     }
 }
