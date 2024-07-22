@@ -1,33 +1,22 @@
 class Solution {
     public String[] sortPeople(String[] names, int[] heights) {
         int n = names.length;
-        Person[] people = new Person[n];
-        
-        // 이름과 키를 쌍으로 저장
+        // 키와 인덱스를 매핑하는 해시맵 생성
+        Map<Integer, String> map = new HashMap<>();
         for (int i = 0; i < n; i++) {
-            people[i] = new Person(names[i], heights[i]);
+            map.put(heights[i], names[i]);
         }
         
-        // 내림차순 정렬
-        Arrays.sort(people, (a, b) -> Integer.compare(b.height, a.height));
+        // 키 배열을 내림차순으로 정렬
+        Integer[] sortedHeights = Arrays.stream(heights).boxed().toArray(Integer[]::new);
+        Arrays.sort(sortedHeights, (a, b) -> b - a);
         
-        // 정렬된 이름 배열 생성
+        // 정렬된 키에 따라 이름 배열 생성
         String[] sortedNames = new String[n];
         for (int i = 0; i < n; i++) {
-            sortedNames[i] = people[i].name;
+            sortedNames[i] = map.get(sortedHeights[i]);
         }
         
         return sortedNames;
-    }
-    
-    // Person 클래스 정의
-    class Person {
-        String name;
-        int height;
-        
-        Person(String name, int height) {
-            this.name = name;
-            this.height = height;
-        }
     }
 }
