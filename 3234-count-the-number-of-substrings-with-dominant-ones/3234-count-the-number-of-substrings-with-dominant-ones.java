@@ -1,27 +1,23 @@
 class Solution {
     public int numberOfSubstrings(String s) {
-        int output = 0;
-        int prefix[] = new int[s.length()];
-        for(int i=0;i<s.length();i++){
-            if(i == 0) prefix[i] = (s.charAt(i) == '1')? 1:0;
-            else prefix[i] = prefix[i-1] + ((s.charAt(i) == '1')? 1:0);
+        int n = s.length();
+        int[] countOne = new int[n + 1];
+        int[] countZero = new int[n + 1];
+        for (int i = 1; i <= n; i++) {
+            countOne[i] = countOne[i - 1] + (s.charAt(i - 1) == '1' ? 1 : 0);
+            countZero[i] = countZero[i - 1] + (s.charAt(i - 1) == '0' ? 1 : 0);
         }
-        for(int i=0;i<s.length();i++){
-            int count = 0,one = 0, jk = 0;boolean check = false;
-            for(int j=i;j<s.length();j++){
-                one = prefix[j]-((i == 0)?0:prefix[i-1]);
-                count = j-i+1-one;
-                if(count*count > one)  j+=((count*count)-one-1); //jump where next soltuion is possible
-                if(count*count <= one) {
-                    int kl = (int)Math.sqrt(one);
-                    output++;
-                    if(kl>count){  //again jump where zero can be greater than one.
-                        output += (j+(kl-count))>=s.length()?(s.length()-j-1):(kl-count); //condition added just to ensure not to exceed the s.length()
-                        j = j+(kl-count);
-                    }
+        
+        int validSubstrings = 0;
+        for (int start = 0; start < n; start++) {
+            for (int end = start + 1; end <= n; end++) {
+                int ones = countOne[end] - countOne[start];
+                int zeros = countZero[end] - countZero[start];
+                if (ones >= zeros * zeros) {
+                    validSubstrings++;
                 }
             }
         }
-        return output;
+        return validSubstrings;
     }
 }
