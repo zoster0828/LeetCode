@@ -7,7 +7,7 @@ class Solution {
         for (int start = 0; start < nums.length; start++) {
             int currentSum = 0;
             for (int end = start; end < nums.length; end++) {
-                currentSum = (currentSum + nums[end]) % 100000007 ;
+                currentSum = (currentSum + nums[end]) % 1000000007 ;
                 subarraySums[index++] = currentSum ;
             }
         }
@@ -15,7 +15,7 @@ class Solution {
 
         int result = 0 ;
         for(int i = left-1 ; i < right ; i++) {
-            result = (result + subarraySums[i]) % 100000007;
+            result = (result + subarraySums[i]) % 1000000007;
         }
         return result;
     }
