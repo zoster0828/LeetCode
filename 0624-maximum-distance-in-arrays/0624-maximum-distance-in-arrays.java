@@ -1,28 +1,40 @@
 class Solution {
-    public int maxDistance(List<List<Integer>> arrays) {
-        int[][] minmax = new int[arrays.size()][2];
-
-        for(int[] m : minmax) {
-            m[0] = Integer.MAX_VALUE;
-            m[1] = Integer.MIN_VALUE;
-        }
-
+    public int maxDistance(List<List<Integer>> arrays) {        
+        int minPo = -1;
+        int maxPo = -1;
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
         for(int i = 0 ; i < arrays.size() ; i++) {
-            List<Integer> array = arrays.get(i);            
-            minmax[i][0] = Math.min(minmax[i][0], array.get(0));
-            minmax[i][1] = Math.max(minmax[i][1], array.get(array.size() - 1));
+            List<Integer> array = arrays.get(i);
+            if(min > array.get(0)) {
+                minPo = i;
+                min = array.get(0);
+            }
+
+            if(max < array.get(array.size()-1)) {
+                maxPo = i;
+                max = array.get(array.size()-1);
+            }
         }
+
+        if(minPo != maxPo) return max - min;
 
         int result = 0;
-        int min = minmax[0][0];
-        int max = minmax[0][1];
-        for(int i = 1 ; i < minmax.length ; i++) {
-            result = Math.max(Math.abs(minmax[i][0] - max), result);
-            result = Math.max(Math.abs(minmax[i][1] - min), result);
-            min = Math.min(minmax[i][0], min);
-            max = Math.max(minmax[i][1], max);
+        int min2 = Integer.MAX_VALUE;
+        int max2 = Integer.MIN_VALUE;
+        for(int i = 0 ; i < arrays.size() ; i++) {
+            if(minPo == i) continue;
+
+            List<Integer> array = arrays.get(i);
+            if(min2 > array.get(0)) {
+                min2 = array.get(0);
+            }
+
+            if(max2 < array.get(array.size()-1)) {
+                max2 = array.get(array.size()-1);
+            }
         }
 
-        return result;
+        return Math.max(max2-min, max - min2);
     }
 }
