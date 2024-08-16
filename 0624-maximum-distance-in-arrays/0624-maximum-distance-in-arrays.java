@@ -8,11 +8,9 @@ class Solution {
         }
 
         for(int i = 0 ; i < arrays.size() ; i++) {
-            List<Integer> array = arrays.get(i);
-            for(int num : array) {
-                minmax[i][0] = Math.min(minmax[i][0], num);
-                minmax[i][1] = Math.max(minmax[i][1], num);
-            }
+            List<Integer> array = arrays.get(i);            
+            minmax[i][0] = Math.min(minmax[i][0], array.get(0));
+            minmax[i][1] = Math.max(minmax[i][1], array.get(array.size() - 1));
         }
 
         int result = 0;
