@@ -1,25 +1,37 @@
 class Solution {
     public int[] missingRolls(int[] rolls, int mean, int n) {
-        int len = rolls.length;
-        int divider = len+n;
+        int[] result = new int[n];
 
         int sum = 0;
-        for(int i : rolls) {
-            sum += i;
+        for(int num : rolls){
+            sum += num;
         }
 
-        int diff = (divider * mean) - sum;
-                
-        int[] result = new int[n];
-        for(int i = 0 ; i < n ; i++) {
-            int candid = diff / (n-i);
-            if(candid < 1 || candid > 6) {
-                return new int[0];
-            }
-            result[i] = candid;
-            diff -= result[i];
-        }
+        int m = rolls.length;
 
-        return result;        
+        int target = (m+n) * mean;
+
+        int necc = target - sum;
+
+        if(necc < n || necc > n*6) return new int[0];
+
+        int di = necc / n;
+        int val = necc % n;
+        for(int i = 0 ; i < n ; i++){
+            if(val > 0)
+                result[i] = di + 1;
+            else
+                result[i] = di;
+            val --;
+        }
+//        int di = necc / n;
+//        for(int i = 0 ; i < n ; i++){
+//            result[i] = di;
+//            necc -= di;
+//            if(necc == 0) break;
+//            di = necc / (n -i -1);
+//        }
+
+        return result;
     }
 }
