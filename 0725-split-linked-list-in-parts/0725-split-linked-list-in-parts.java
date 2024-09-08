@@ -9,7 +9,7 @@
  * }
  */
 class Solution {
-public ListNode[] splitListToParts(ListNode head, int k) {
+    public ListNode[] splitListToParts(ListNode head, int k) {
         ListNode[] result = new ListNode[k];
         ListNode temp = head;
 
