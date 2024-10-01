@@ -8,6 +8,7 @@ class Solution {
             int temp = arr[i] % k;
             if(temp < 0) temp = k + temp;
             int need = (k - temp) % k;
+            if(invalid > (n-i)) return false;
             if(candid[need] != 0) {
                 candid[need]--;
                 invalid--;
@@ -16,10 +17,6 @@ class Solution {
                 invalid++;
             }
         }
-
-        // for(int i = 0 ; i < k ; i ++) {
-        //     if(candid[i] != 0) return false;
-        // }
 
         return invalid == 0;
     }
