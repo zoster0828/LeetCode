@@ -10,11 +10,11 @@ class Solution {
             if(c == '[') {
                 left ++;         
             } else {
-                if(left == 0) {                    
-                    left ++;
-                    swap++;  
+                if(left > 0) {                    
+                    left --; 
                 } else {                    
-                    left --;
+                    left ++;
+                    swap++; 
                 }
             }
         }
