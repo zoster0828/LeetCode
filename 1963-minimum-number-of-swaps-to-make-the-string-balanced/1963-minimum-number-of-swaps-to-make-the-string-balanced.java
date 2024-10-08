@@ -12,11 +12,8 @@ class Solution {
             } else {
                 if(left == 0) {                    
                     left ++;
-                    swap++;                    
-                    continue;
-                }
-
-                if(left > 0) {
+                    swap++;  
+                } else {                    
                     left --;
                 }
             }
