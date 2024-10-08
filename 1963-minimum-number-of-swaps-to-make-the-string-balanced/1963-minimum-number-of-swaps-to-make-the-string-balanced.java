@@ -7,12 +7,9 @@ class Solution {
         int swap = 0;
         for(int i = 0 ; i < n ; i++) {
             char c = s.charAt(i);
-
             if(c == '[') {
                 left ++;         
-            }
-
-            if(c == ']') {
+            } else {
                 if(left == 0) {                    
                     left ++;
                     swap++;                    
