@@ -14,7 +14,10 @@ class Solution {
                 if(sum == 0) {
                     result.add(List.of(nums[i], nums[j], nums[k]));
                     j++;
-                    k = n-1;
+                    k--;
+                    while(j < k && nums[j] == nums[j+1]) {
+                        j++;                        
+                    }
                 }
 
                 if(sum > 0) {
