@@ -17,6 +17,9 @@ class Solution {
         for(int i = 0 ; i < n - 1 ; i++) {
             for(int j = i+1 ; j < n ; j++) {
                 int candidate = (nums[i] +  nums[j]) * -1;
+                
+                if(candidate >= 100001 || candidate <= -100001) continue;
+
                 if(set.containsKey(candidate)) {
                     int count = set.get(candidate);
                     if(candidate == nums[i]) {
