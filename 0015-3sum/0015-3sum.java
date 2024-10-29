@@ -3,39 +3,28 @@ class Solution {
         Arrays.sort(nums);
 
         int n = nums.length;
-        Set<List<Integer>> result = new HashSet<>();
-        Map<Integer, Integer> set = new HashMap();
-        
-        for(int num : nums) {
-            if(set.containsKey(num)) {
-                set.compute(num, (key, value) -> value+1);
-            } else {
-                set.put(num, 1);
-            }
-        }
+        Set<List<Integer>> result = new HashSet<>();    
 
-        for(int i = 0 ; i < n - 1 ; i++) {
-            for(int j = i+1 ; j < n ; j++) {
-                int candidate = (nums[i] +  nums[j]) * -1;
-                
-                if(candidate >= 100001 || candidate <= -100001) continue;
+        for(int i = 0 ; i < n - 2 ; i++) {
+            int j = i+1;
+            int k = n-1;
+            
+            while(j < k) {
+                int sum = nums[i] + nums[j] + nums[k];
+                if(sum == 0) {
+                    result.add(List.of(nums[i], nums[j], nums[k]));
+                    j++;
+                    k = n-1;
+                }
 
-                if(set.containsKey(candidate)) {
-                    int count = set.get(candidate);
-                    if(candidate == nums[i]) {
-                        count--;
-                    }
-                    if(candidate == nums[j]) {
-                        count--;
-                    }
-                    if(count <= 0) continue;
-                    
-                    List<Integer> list = new ArrayList<>();
-                    list.add(nums[i]);
-                    list.add(nums[j]);
-                    list.add(candidate);
-                    Collections.sort(list);
-                    result.add(list);
+                if(sum > 0) {
+                    k--;
+                    continue;
+                }
+
+                if(sum < 0) {
+                    j++;
+                    continue;
                 }
             }
         }
@@ -43,3 +32,6 @@ class Solution {
         return new ArrayList(result);
     }
 }
+
+//-4, -1, -1, 0, 1,2,
+// -4 i, -1 j, 2 k
