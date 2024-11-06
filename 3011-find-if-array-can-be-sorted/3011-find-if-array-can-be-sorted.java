@@ -23,13 +23,7 @@ class Solution {
         return true;
     }
 
-    private int countOne(int num) {
-        String binary = Integer.toBinaryString(num);
-        int result = 0;
-        for(int i = 0 ; i < binary.length() ; i++) {
-            if(binary.charAt(i) == '1') result++;
-        }
-
-        return result;
+    private int countOne(int num) {        
+        return Integer.bitCount(num);
     }
 }
