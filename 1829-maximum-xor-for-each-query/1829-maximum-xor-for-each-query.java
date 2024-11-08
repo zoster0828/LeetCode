@@ -5,18 +5,18 @@ class Solution {
 
         int[] result = new int[n];
         int position = 0;
-        int[] cache = new int[n];
-        cache[0] = nums[0];
+        int full = nums[0];
 
         for(int i = 1; i < n ; i++) {
-            cache[i] = cache[i-1] ^ nums[i];
+            full ^= nums[i];
         }
 
         int po = 0;
         for(int i = n-1 ; i >= 0 ; i--) {
-            if(cache[i] == max) result[po] = 0;
-            else result[po] = cache[i] ^ max;
+            if(full == max) result[po] = 0;
+            else result[po] = full ^ max;
             po++;
+            full  ^= nums[i];
         }
 
         return result;
