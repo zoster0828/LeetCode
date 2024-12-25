@@ -14,10 +14,10 @@
  * }
  */
 class Solution {
-    public List<Integer> largestValues(TreeNode root) {
+    Queue<TreeNode> queue = new LinkedList();
+    List<Integer> result = new ArrayList();
+    public List<Integer> largestValues(TreeNode root) {        
         
-        Queue<TreeNode> queue = new LinkedList();
-        List<Integer> result = new ArrayList();
         if(root == null) return result;
 
         queue.add(root);
