@@ -25,12 +25,19 @@ class Solution {
     }
 
     private int calculate(String s, int start, int end) {
-        Set<Character> uniqueCharacters = new HashSet<>();
-
+        boolean[] seen = new boolean[26];
+        int uniqueCount = 0;
         for (int i = start + 1; i < end; i++) {
-            uniqueCharacters.add(s.charAt(i));
+            char c = s.charAt(i);
+            if (c >= 'a' && c <= 'z') {
+                int index = c - 'a';
+                if (!seen[index]) {
+                    seen[index] = true;
+                    uniqueCount++;
+                }
+            }
         }
 
-        return uniqueCharacters.size();
+        return uniqueCount;
     }
 }
