@@ -15,14 +15,16 @@ class Solution {
         }
         int result[] = new int[n];
         int i = 0;
-        for( ; i < less.size() ; i++) {
+        int a = less.size();
+        int b = greater.size();
+        for( ; i < a ; i++) {
             result[i] = less.get(i);
         }
-        for(; i < less.size() + equals ; i++) {
+        for(; i < a + equals ; i++) {
             result[i] = pivot;
         }
-        for( ; i < less.size() + equals + greater.size() ; i++) {
-            result[i] = greater.get(i - equals - less.size());
+        for( ; i < a + equals + b ; i++) {
+            result[i] = greater.get(i - equals - a);
         }
 
         return result;
