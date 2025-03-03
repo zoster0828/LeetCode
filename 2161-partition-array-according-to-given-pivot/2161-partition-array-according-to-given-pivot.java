@@ -13,13 +13,18 @@ class Solution {
                 equals++;
             }
         }
-
-        for(int i = 0 ; i < equals ; i++) {
-            less.add(pivot);
+        int result[] = new int[n];
+        int i = 0;
+        for( ; i < less.size() ; i++) {
+            result[i] = less.get(i);
+        }
+        for(; i < less.size() + equals ; i++) {
+            result[i] = pivot;
+        }
+        for( ; i < less.size() + equals + greater.size() ; i++) {
+            result[i] = greater.get(i - equals - less.size());
         }
 
-        less.addAll(greater);
-
-        return less.stream().mapToInt(it -> it).toArray();
+        return result;
     }
 }
