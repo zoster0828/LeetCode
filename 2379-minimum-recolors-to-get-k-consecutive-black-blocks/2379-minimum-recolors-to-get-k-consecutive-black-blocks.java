@@ -11,9 +11,12 @@ class Solution {
         int min = count;
         for(int i = 1 ; i < n - k +1 ; i++) {
             if(count == k) return 0;
-            count += blocks.charAt(i-1) == 'W' ? 0 : -1;
-            count += blocks.charAt(i-1+k) == 'W' ? 0 : 1;
-            min = Math.max(count, min);
+            if(blocks.charAt(i-1) != blocks.charAt(i-1+k)) {
+                if(blocks.charAt(i-1) == 'W') count++;
+                else count--;
+                min = Math.max(count, min);
+            }
+           
         }
 
         return k-min;
