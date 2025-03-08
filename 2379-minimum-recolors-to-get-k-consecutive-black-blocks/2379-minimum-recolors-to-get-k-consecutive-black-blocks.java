@@ -7,8 +7,6 @@ class Solution {
                 count++;
             }
         }
-        if(count == k) return 0;
-        if(n == k) return k-count;
         
         int min = count;
         for(int i = 1 ; i < n - k +1 ; i++) {
