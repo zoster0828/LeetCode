@@ -15,7 +15,6 @@ class Solution {
             if(count == k) return 0;
             count += blocks.charAt(i-1) == 'W' ? 0 : -1;
             count += blocks.charAt(i-1+k) == 'W' ? 0 : 1;
-            System.out.println(min);
             min = Math.max(count, min);
         }
 
