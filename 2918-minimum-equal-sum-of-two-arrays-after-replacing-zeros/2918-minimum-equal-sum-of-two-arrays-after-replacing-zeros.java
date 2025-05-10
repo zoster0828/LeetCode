@@ -1,8 +1,8 @@
 class Solution {
     public long minSum(int[] nums1, int[] nums2) {
         int n = nums1.length;        
-        int n0 = 0;
-        int nsum = 0;
+        long n0 = 0;
+        long nsum = 0;
         for(int i = 0 ; i <  n ; i++) {
             if(nums1[i] == 0) {
                 n0++;
@@ -12,8 +12,8 @@ class Solution {
         }
 
         int m = nums2.length;
-        int m0 = 0;
-        int msum = 0;
+        long m0 = 0;
+        long msum = 0;
         for(int i = 0 ; i <  m ; i++) {
             if(nums2[i] == 0) {
                 m0++;
