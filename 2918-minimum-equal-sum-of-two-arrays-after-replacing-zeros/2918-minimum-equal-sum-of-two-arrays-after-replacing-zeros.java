@@ -3,11 +3,8 @@ class Solution {
         long n0 = 0;
         long nsum = 0;
         for(int n : nums1) {
-            if(n == 0) {
-                n0++;
-            } else {
-                nsum += n;
-            }
+            nsum += n;
+            n0 += n == 0 ? 1 : 0;            
         }
 
         long m0 = 0;
