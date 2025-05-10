@@ -10,11 +10,8 @@ class Solution {
         long m0 = 0;
         long msum = 0;
         for(int n : nums2) {
-            if(n == 0) {
-                m0++;
-            } else {
-                msum += n;
-            }
+            msum += n;
+            m0 += n == 0 ? 1 : 0;            
         }
 
         if(n0 == 0 && nsum < msum+m0) {
