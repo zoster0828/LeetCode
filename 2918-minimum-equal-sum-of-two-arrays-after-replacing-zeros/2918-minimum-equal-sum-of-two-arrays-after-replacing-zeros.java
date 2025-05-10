@@ -29,10 +29,6 @@ class Solution {
             return -1;
         }
 
-        if(nsum+n0 < msum+m0) {
-            return (msum+m0);
-        } else {
-            return (nsum+n0);
-        }
+        return Math.max(msum+m0, nsum+n0);
     }
 }
