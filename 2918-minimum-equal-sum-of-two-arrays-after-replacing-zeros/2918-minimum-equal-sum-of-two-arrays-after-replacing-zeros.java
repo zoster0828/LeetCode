@@ -13,14 +13,15 @@ class Solution {
             msum += n;
             m0 += n == 0 ? 1 : 0;            
         }
-
-        if(n0 == 0 && nsum < msum+m0) {
+        int mt = msum+m0;
+        int nt = nsum+n0;
+        if(n0 == 0 && nt < mt) {
             return -1;
         }
-        if(m0 == 0 && msum < nsum+n0) {
+        if(m0 == 0 && mt < nt) {
             return -1;
         }
 
-        return Math.max(msum+m0, nsum+n0);
+        return Math.max(mt, nt);
     }
 }
