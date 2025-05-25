@@ -8,29 +8,28 @@ class Solution {
         }
 
         int result = 0;        
-        
-        for(int i = 0 ; i < 26 ; i++) {
-            for(int j = 0 ; j < 26 ; j++) {
-                if(i==j) continue;
-                result += Math.min(wordCount[i][j], wordCount[j][i]);
-            }
-        }
-
         boolean a = true;
         for(int i = 0 ; i < 26 ; i++) {
-            if(wordCount[i][i] > 1) {
-                if(wordCount[i][i] % 2 == 0) {
-                    result += wordCount[i][i];
-                } else {
-                    result += wordCount[i][i] -1;              
-                }
-            }
+            for(int j = 0 ; j < 26 ; j++) {
+                if(i==j) {
+                    if(wordCount[i][i] > 1) {
+                        if(wordCount[i][i] % 2 == 0) {
+                            result += wordCount[i][i];
+                        } else {
+                            result += wordCount[i][i] -1;              
+                        }
+                    }
 
-            if(wordCount[i][i] % 2 != 0 && a) {
-                result += 1;
-                a = false;
+                    if(wordCount[i][i] % 2 != 0 && a) {
+                        result += 1;
+                        a = false;
+                    }
+                } else {
+                    result += Math.min(wordCount[i][j], wordCount[j][i]);
+                }                
             }
         }
+
 
         return result * 2;
     }
